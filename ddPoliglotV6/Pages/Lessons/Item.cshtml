@@ -1,0 +1,148 @@
+﻿@page "/{lessons-folder-alias:LessonsFolderAliases}/{lesson-page-alias:LessonPageAliases}"
+@using ddPoliglotV6.BL.Models
+@using ddPoliglotV6.Data.Models
+@model ddPoliglotV6.Pages.Lessons.ItemModel
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="#">@ViewData["Text1"]</a></li>
+                    <li class="list-inline-item text-white h3 font-secondary nasted">@Model.Lesson?.Name</li>
+                </ul>
+                <p class="text-lighten">используй текстовый формат урока для лучшего восприятия </p>
+            </div>
+        </div>
+    </div>
+</section>
+@if (Model.Lesson != null)
+{
+    <!-- /page title -->
+    <div class="container">
+        <div class="content">
+            <!-- notice details -->
+            <section class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex">
+                                <div class="text-center mr-4">
+                                    <div class="p-4 bg-primary text-white">
+                                        <span class="h2 d-block">@Model.Lesson.Order</span> Урок
+                                    </div>
+                                </div>
+                                <div>
+                                    <h2 class="mb-10">Материал урока </h2>
+                                </div>
+                            </div>
+
+                            @Html.Raw(Model.Lesson.Content)
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /notice details -->
+        </div>
+
+        @if (Model.ArticleByParamData != null)
+        {
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <tbody>
+                            @foreach (WordSelected wordSelected in Model.ArticleByParamData.SelectedWords)
+                            {
+                                <tr>
+                                    <td>
+                                        <strong>@wordSelected.Word.Text</strong>
+                                    </td>
+                                    <td>
+                                        @wordSelected.Word.WordTranslation.Text
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col-1">
+                                            </div>
+
+                                            <div class="col-11">
+                                                <table class="table">
+                                                    <tbody>
+                                                        @foreach (WordPhrase wordPhrase in wordSelected.PhraseWordsSelected)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @wordPhrase.Text
+                                                                </td>
+                                                                <td>
+                                                                    @wordPhrase.WordPhraseTranslation.Text
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title">Видеоурок</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <article class="col-lg-10 col-12 mb-5">
+                <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+                    @if (Model.Lesson.Video1 != "")
+                    {
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src='@string.Format("https://www.youtube.com/embed/{0}", Model.Lesson.Video1)'
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    }
+                </div>
+            </article>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title">Прослушай аудио к данному уроку </h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <article class="col-lg-10 col-12 mb-5">
+                <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+                    @if (Model.Lesson.Audio1 != "")
+                    {
+                        <div class="card-body">
+                            <figure>
+                                @*<figcaption><h5>Прослушать ауди версию урока:</h5></figcaption>*@
+                                <audio controls src="@string.Format("{0}/{1}", Model.AudioBaseUrl, Model.Lesson.Audio1)">
+                                    Your browser does not support the
+                                    <code>audio</code> element.
+                                </audio>
+                            </figure>
+                        </div>
+                    }
+                </div>
+            </article>
+        </div>
+    </div>
+
+}
+

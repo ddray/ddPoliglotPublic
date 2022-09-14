@@ -1,0 +1,291 @@
+<div *ngIf="dataItem" #componentRootElement>
+  <div style="margin:10px;">
+    <div class="example-container mat-elevation-z8">
+      <div class="example-table-container">
+        <div class="example-container">
+          <mat-form-field>
+            <input matInput placeholder="Article Name" [(ngModel)]="dataItem.name" (ngModelChange)="changedItem($event)">
+          </mat-form-field>
+
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Languages and voices
+                </mat-panel-title>
+                <mat-panel-description>
+                  Learn Language: {{dataItem.language}}, Native Language: {{dataItem.languageTranslation}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-form-field>
+                <div style="margin:5px;">
+                  <mat-select [disabled]="true" placeholder="Learn Language" [(ngModel)]="dataItem.language" (ngModelChange)="learnLanguageChanged($event)" [disabled]="dataItem.articlePhrases.length !== 0">
+                    <mat-option *ngFor="let ln of languages" value="{{ln.code}}">{{ln.name}}</mat-option>
+                  </mat-select>
+                </div>
+              </mat-form-field>
+              <mat-form-field>
+                <div style="margin:5px;">
+                  <mat-select [disabled]="true" placeholder="Native Language" [(ngModel)]="dataItem.languageTranslation" (ngModelChange)="nativeLanguageChanged($event)" [disabled]="dataItem.articlePhrases.length !== 0">
+                    <mat-option *ngFor="let ln of languages" value="{{ln.code}}">{{ln.name}}</mat-option>
+                  </mat-select>
+                </div>
+              </mat-form-field>
+
+              <mat-accordion>
+                <mat-expansion-panel *ngIf="dataItem.language">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Speaker voices (Learn Language)
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      {{textActorDefaultName}}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <mat-action-row>
+                    <button type="button" mat-button class="crm-command-bar-button" (click)="addSpeakerVoice(0)">
+                      <mat-icon>add_circle</mat-icon>NEW
+                    </button>
+                  </mat-action-row>
+
+                  <table mat-table [dataSource]="textActors" #textActorsTable class="mat-elevation-z2">
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="defaultInRole">
+                      <th mat-header-cell *matHeaderCellDef> is def. </th>
+                      <td mat-cell *matCellDef="let element"> {{element.defaultInRole ? 'Yes' : ''}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="voiceName">
+                      <th mat-header-cell *matHeaderCellDef> props </th>
+                      <td mat-cell *matCellDef="let element"> {{element.voiceName}} / {{element.voiceSpeed}} / {{element.voicePitch}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="act">
+                      <th mat-header-cell *matHeaderCellDef></th>
+                      <td mat-cell *matCellDef="let element">
+                        <button mat-button color="primary" (click)="editSpeakerVoice(element, textActors)"
+                                matTooltip="Edit Voice">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="actorColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: actorColumns;"></tr>
+                  </table>
+                </mat-expansion-panel>
+                <mat-expansion-panel *ngIf="dataItem.language">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Dictor voices (Learn Language)
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      {{textDictorActorDefaultName}}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <mat-action-row>
+                    <button type="button" mat-button class="crm-command-bar-button" (click)="addSpeakerVoice(2)">
+                      <mat-icon>add_circle</mat-icon>NEW
+                    </button>
+                  </mat-action-row>
+
+                  <table mat-table [dataSource]="textDictorActors" #textDictorActorsTable class="mat-elevation-z8">
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="defaultInRole">
+                      <th mat-header-cell *matHeaderCellDef> is def. </th>
+                      <td mat-cell *matCellDef="let element"> {{element.defaultInRole ? 'Yes' : ''}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="voiceName">
+                      <th mat-header-cell *matHeaderCellDef> props </th>
+                      <td mat-cell *matCellDef="let element"> {{element.voiceName}} / {{element.voiceSpeed}} / {{element.voicePitch}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="act">
+                      <th mat-header-cell *matHeaderCellDef></th>
+                      <td mat-cell *matCellDef="let element">
+                        <button mat-button color="primary" (click)="editSpeakerVoice(element, textDictorActors)"
+                                matTooltip="Edit Voice">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="actorColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: actorColumns;"></tr>
+                  </table>
+                </mat-expansion-panel>
+                <mat-expansion-panel *ngIf="dataItem.languageTranslation">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Speaker voices (Native Language)
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      {{translatedActorDefaultName}}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <mat-action-row>
+                    <button type="button" mat-button class="crm-command-bar-button" (click)="addSpeakerVoice(1)">
+                      <mat-icon>add_circle</mat-icon>NEW
+                    </button>
+                  </mat-action-row>
+
+                  <table mat-table [dataSource]="translatedActors" #translatedActorsTable class="mat-elevation-z8">
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="defaultInRole">
+                      <th mat-header-cell *matHeaderCellDef> is def. </th>
+                      <td mat-cell *matCellDef="let element"> {{element.defaultInRole ? 'Yes' : ''}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="voiceName">
+                      <th mat-header-cell *matHeaderCellDef> props </th>
+                      <td mat-cell *matCellDef="let element"> {{element.voiceName}} / {{element.voiceSpeed}} / {{element.voicePitch}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="act">
+                      <th mat-header-cell *matHeaderCellDef></th>
+                      <td mat-cell *matCellDef="let element">
+                        <button mat-button color="primary" (click)="editSpeakerVoice(element, translatedActors)"
+                                matTooltip="Edit Voice">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="actorColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: actorColumns;"></tr>
+                  </table>
+
+                </mat-expansion-panel>
+                <mat-expansion-panel *ngIf="dataItem.languageTranslation">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Dictor voices (Native Language)
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      {{translatedDictorActorDefaultName}}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <mat-action-row>
+                    <button type="button" mat-button class="crm-command-bar-button" (click)="addSpeakerVoice(3)">
+                      <mat-icon>add_circle</mat-icon>NEW
+                    </button>
+                  </mat-action-row>
+
+                  <table mat-table [dataSource]="translatedDictorActors" #translatedDictorActorsTable class="mat-elevation-z8">
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="defaultInRole">
+                      <th mat-header-cell *matHeaderCellDef> is def. </th>
+                      <td mat-cell *matCellDef="let element"> {{element.defaultInRole ? 'Yes' : ''}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="voiceName">
+                      <th mat-header-cell *matHeaderCellDef> props </th>
+                      <td mat-cell *matCellDef="let element"> {{element.voiceName}} / {{element.voiceSpeed}} / {{element.voicePitch}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="act">
+                      <th mat-header-cell *matHeaderCellDef></th>
+                      <td mat-cell *matCellDef="let element">
+                        <button mat-button color="primary" (click)="editSpeakerVoice(element, translatedDictorActors)"
+                                matTooltip="Edit Voice">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                      </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="actorColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: actorColumns;"></tr>
+                  </table>
+                </mat-expansion-panel>
+              </mat-accordion>
+
+
+
+            </mat-expansion-panel>
+          </mat-accordion>
+
+        </div>
+      </div>
+
+      <div>
+        <button type="button" mat-button style="margin: 10px;" class="crm-command-bar-button" (click)="insertRow()" *ngIf="dataItem.language && dataItem.languageTranslation">
+          <mat-icon>add_circle</mat-icon>ADD FIRST PHRASE
+        </button>
+        <button type="button" mat-button style="margin: 10px;" class="crm-command-bar-button" (click)="insertDictorRow()" *ngIf="dataItem.language && dataItem.languageTranslation">
+          <mat-icon>add_circle</mat-icon>ADD FIRST DICTOR
+        </button>
+        <button type="button" mat-button style="margin: 10px;" class="crm-command-bar-button" (click)="insertRowsTmp1()" *ngIf="dataItem.language && dataItem.languageTranslation">
+          <mat-icon>add_circle</mat-icon>ADD Template 1
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin:10px;">
+    <div class="example-container mat-elevation-z8">
+      <div class="example-table-container">
+        <div class="row" *ngFor="let articlePhrase of dataItem.articlePhrases">
+          <div class="col-12">
+            <app-phrase-with-details *ngIf="!articlePhrase.hidden"
+                                     [item]="articlePhrase"
+                                     [parent]="dataItem"
+                                     [articleChanged]="isChanged"
+                                     [showToolbox]="showToolbox"
+                                     (onInsertRowBefore)="insertRowBefore($event)"
+                                     (onInsertRowAfter)="insertRowAfter($event)"
+                                     (onDeleteRow)="deleteRow($event)"
+                                     (onMoveUpRow)="moveUpRow($event)"
+                                     (onMoveDownRow)="moveDownRow($event)"
+                                     (onSplitRow)="splitRow($event)"
+                                     (onDublicateRow)="dublicateRow($event)"
+                                     (onAddDictorSpeechRow)="addDictorSpeechRow($event)"
+                                     (onTextToSpeachArticlePhrase)="textToSpeechRow($event)"
+                                     (onChangedRow)="changedRow($event)"
+                                     (onSplitByPhrasesRow)="splitByPhrasesRow($event)"
+                                     (onSplitBySubPhrasesRow)="splitBySubPhrasesRow($event)"
+                                     (onChangeRowActors)="changeRowActors($event)"
+                                     (onUnsetSilentRow)="unsetSilentRow($event)"
+                                     (onSetSilentRow)="setSilentRow($event)"
+                                     (onSplitForRandomGenerationRow)="splitForRandomGenerationRow($event)"
+                                     >
+            </app-phrase-with-details>
+            <div *ngIf="articlePhrase.hasChildren" class="row" >
+              <div [ngClass]="{'text-right childrenButtonRow': true, 'childrenOpened' : !articlePhrase.childrenClosed, 'childrenClosed' : articlePhrase.childrenClosed }">
+                <button *ngIf="articlePhrase.childrenClosed" type="button" class="btn btn-primary" (click)="showHideChildren(articlePhrase)">
+                  Show children
+                </button>
+                <button *ngIf="!articlePhrase.childrenClosed" type="button" class="btn btn-info" (click)="showHideChildren(articlePhrase)">
+                  Hide children
+                </button>
+                <button *ngIf="!articlePhrase.childrenClosed" type="button" class="btn btn-warning" style="margin-left: 10px;" (click)="deleteChildren(articlePhrase)">
+                  Delete children
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-loading-shade" *ngIf="isLoadingResults" [ngStyle]="{'height': loaderHeight}">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</div>

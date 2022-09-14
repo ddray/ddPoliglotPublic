@@ -1,0 +1,240 @@
+<div class="example-container">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+
+    <mat-card *ngIf="currentData" style="width: 100%; margin: 20px;">
+        <form [formGroup]="formGr" (submit)="onSubmit()">
+            <div>
+                <button type="submit" mat-button color="primary" matTooltip="Save">
+                    <mat-icon>save</mat-icon>
+                    Save
+                </button>
+
+                <mat-form-field style="width: 100%"  appearance="outline">
+                  <mat-label>Page Name (for url)</mat-label>
+                  <input matInput placeholder="Page Name (for url)" formControlName="pageName">
+                  <mat-error *ngIf="formGr.controls['pageName'].hasError('required')">required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%"  appearance="outline">
+                  <mat-label>Name</mat-label>
+                  <input matInput placeholder="Name" formControlName="name">
+                  <mat-error *ngIf="formGr.controls['name'].hasError('required')">required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <textarea  matInput formControlName="description"               
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    cdkAutosizeMaxRows="40"
+                    style="overflow: hidden; "></textarea>
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%" appearance="outline">
+                    <mat-label>Content</mat-label>
+                    <textarea  matInput formControlName="content"        
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="5"
+                    cdkAutosizeMaxRows="40"
+                    style="overflow: hidden; "></textarea>
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%" appearance="outline">
+                  <mat-label>pageMetaTitle</mat-label>
+                  <textarea  matInput formControlName="pageMetaTitle"               
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="2"
+                  cdkAutosizeMaxRows="40"
+                  style="overflow: hidden; "></textarea>
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%" appearance="outline">
+                  <mat-label>pageMetaDescription</mat-label>
+                  <textarea  matInput formControlName="pageMetaDescription"               
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="2"
+                  cdkAutosizeMaxRows="40"
+                  style="overflow: hidden; "></textarea>
+                </mat-form-field>
+
+                <div style="margin-top: 10px; margin-bottom: 10px;">
+                  <p>Article by param: {{currentData?.articleByParam?.name}}</p>
+                  <button type="button" (click)="selectArticleByParam()" mat-button color="primary" matTooltip="Select article by param">
+                    Select article by param
+                  </button>
+                </div>
+
+                <mat-form-field *ngIf="currentData.lessonID > 0" style="width: 100px;" appearance="outline">
+                  <mat-label>Order</mat-label>
+                  <input type="number" placeholder="Order" matInput formControlName="order">
+                </mat-form-field>
+
+                <mat-card class="cart">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Video 1</mat-label>
+                    <input matInput placeholder="Enter Video 1 url" formControlName="video1">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Audio 1</mat-label>
+                    <input matInput placeholder="Enter Audio 1 url" formControlName="audio1">
+                    <button type="button" matSuffix mat-icon-button color="primary" matTooltip="Select Blob" (click)="openSelectFileDialog(1, 'audio')">
+                      <mat-icon>list</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Image 1</mat-label>
+                    <input matInput placeholder="Enter Image 1 url" formControlName="image1">
+                    <button type="button" matSuffix mat-icon-button color="primary" matTooltip="Select Blob" (click)="openSelectFileDialog(1, 'image', 320)">
+                      <mat-icon>list</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Description 1</mat-label>
+                    <textarea  matInput formControlName="description1"               
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="40"
+                    style="overflow: hidden; "></textarea>
+                  </mat-form-field>
+                </mat-card>
+
+                <mat-card class="cart">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Video 2</mat-label>
+                    <input matInput placeholder="Enter Video 2 url" formControlName="video2">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Audio 2</mat-label>
+                    <input matInput placeholder="Enter Audio 2 url" formControlName="audio2">
+                    <button type="button" matSuffix mat-icon-button color="primary" matTooltip="Select Blob" (click)="openSelectFileDialog(2, 'audio')">
+                      <mat-icon>list</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Image 2</mat-label>
+                    <input matInput placeholder="Enter Image 2 url" formControlName="image2">
+                    <button type="button" matSuffix mat-icon-button color="primary" matTooltip="Select Blob" (click)="openSelectFileDialog(2, 'image', 320)">
+                      <mat-icon>list</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Description 2</mat-label>
+                    <textarea  matInput formControlName="description2"               
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="40"
+                    style="overflow: hidden; "></textarea>
+                  </mat-form-field>
+                </mat-card>
+
+                <mat-card class="cart">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Video 3</mat-label>
+                    <input matInput placeholder="Enter Video 3 url" formControlName="video3">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Audio 3</mat-label>
+                    <input matInput placeholder="Enter Audio 3 url" formControlName="audio3">
+                    <button type="button" matSuffix mat-icon-button color="primary" matTooltip="Select Blob" (click)="openSelectFileDialog(3, 'audio')">
+                      <mat-icon>list</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Image 3</mat-label>
+                    <input matInput placeholder="Enter Image 3 url" formControlName="image3">
+                    <button type="button" matSuffix mat-icon-button color="primary" matTooltip="Select Blob" (click)="openSelectFileDialog(3, 'image', 320)">
+                      <mat-icon>list</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Description 3</mat-label>
+                    <textarea  matInput formControlName="description3"               
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="40"
+                    style="overflow: hidden; "></textarea>
+                  </mat-form-field>
+                </mat-card>
+
+                <mat-card class="cart">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Video 4</mat-label>
+                    <input matInput placeholder="Enter Video 4 url" formControlName="video4">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Audio 4</mat-label>
+                    <input matInput placeholder="Enter Audio 4 url" formControlName="audio4">
+                    <button type="button" matSuffix mat-icon-button color="primary" matTooltip="Select Blob" (click)="openSelectFileDialog(4, 'audio')">
+                      <mat-icon>list</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Image 4</mat-label>
+                    <input matInput placeholder="Enter Image 4 url" formControlName="image4">
+                    <button type="button" matSuffix mat-icon-button color="primary" matTooltip="Select Blob" (click)="openSelectFileDialog(4, 'image', 320)">
+                      <mat-icon>list</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Description 4</mat-label>
+                    <textarea  matInput formControlName="description4"               
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="40"
+                    style="overflow: hidden; "></textarea>
+                  </mat-form-field>
+                </mat-card>
+
+                <mat-card class="cart">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Video 5</mat-label>
+                    <input matInput placeholder="Enter Video 5 url" formControlName="video5">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Audio 5</mat-label>
+                    <input matInput placeholder="Enter Audio 5 url" formControlName="audio5">
+                    <button type="button" matSuffix mat-icon-button color="primary" matTooltip="Select Blob" (click)="openSelectFileDialog(5, 'audio')">
+                      <mat-icon>list</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Image 5</mat-label>
+                    <input matInput placeholder="Enter Image 5 url" formControlName="image5">
+                    <button type="button" matSuffix mat-icon-button color="primary" matTooltip="Select Blob" (click)="openSelectFileDialog(5, 'image', 320)">
+                      <mat-icon>list</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Description 5</mat-label>
+                    <textarea  matInput formControlName="description5"               
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="40"
+                    style="overflow: hidden; "></textarea>
+                  </mat-form-field>
+                </mat-card>
+            </div>
+        </form>
+
+        <!-- <div *ngIf="currentData.parentID === 0 && currentData.lessonID > 0">
+            <h3 class="my-1">Child lessons</h3>
+            <app-lessons
+                
+                [parentID]="currentData.lessonID"
+                ></app-lessons>            
+        </div> -->
+    </mat-card>
+ </div>
+

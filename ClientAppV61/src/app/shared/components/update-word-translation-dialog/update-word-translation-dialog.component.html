@@ -1,0 +1,32 @@
+<div class="example-container">
+    <div class="example-loading-shade"
+         *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="row" style="min-height: 100px; margin: 0px;">
+        Word:&nbsp; {{itemData.text}}
+    </div>
+    <div class="row" style="min-height: 100px; margin: 5px;">
+        <div class="col-12" style="padding: 0px 5px">
+            <div class="form-group rounded-lg border border-primary" style="width: 100%; background-color: aquamarine; padding: 5px;">
+                <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    [(ngModel)]="itemData.wordTranslation.text"
+                    style="overflow: hidden;"
+                    class="form-control"
+                ></textarea>
+            </div>
+        </div>        
+    </div>
+
+    <div class="row">
+        <audio *ngIf="itemData.wordTranslation.textSpeechFileName" style="height:32px; width: 250px;" src="{{phrasesAudioUrl}}/{{itemData.wordTranslation.textSpeechFileName}}" controls="controls">
+        </audio>
+    </div>
+
+    <mat-dialog-actions align="end">
+        <button mat-button (click)="cancel()">Cancel</button>
+        <button mat-button (click)="save()">Save</button>
+    </mat-dialog-actions>
+</div>

@@ -1,0 +1,348 @@
+﻿@page
+@using Microsoft.AspNetCore.Localization
+@using ddPoliglotV6.Infrastructure.Route
+@using ddPoliglotV6.Data.Models
+
+@inject ddPoliglotV6.Infrastructure.Services.CommonLocalizationService localizer
+@inject IHtmlLocalizer<IndexModel> htmlLocalizer
+
+@model IndexModel
+
+@{
+    ViewData["Title"] = localizer.Get("pageTitleHomePage");
+    ViewData["Description"] = localizer.Get("pageDescriptionHomePage");
+    var requestCultureFeature = HttpContext.Features.Get<IRequestCultureFeature>();
+    var requestCulture = requestCultureFeature.RequestCulture;
+    ViewData["ActiveMenu"] = MenuItemName.Home.ToString();
+}
+
+<!-- hero slider -->
+<section class="hero-section overlay bg-cover" data-background="/img/banner/banner-1.jpg">
+    <div class="container">
+        <div class="hero-slider">
+            <!-- slider item -->
+            <div class="hero-slider-item">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="text-white" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                            Уникальный тренажер для изучения <i>английского</i>
+                        </h1>
+                        <p class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".4">
+                            методом эффективного повторения и воспроизведения
+                        </p>
+                        @*<a class="btn btn-primary" asp-page="SelectLangFirst">Start now</a>
+
+                            <a class="btn btn-primary" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" asp-area="Identity" asp-page="/Account/Register"
+                                data-animation-in="fadeInLeft" data-delay-in=".7" data-toggle="modal" data-target="#selectedLang">Start now</a>*@
+                        <!-- <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#" data-toggle="modal" data-target="#signupModal">Register</a></li> -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- slider item -->
+            <div class="hero-slider-item">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="text-white" data-animation-out="fadeOutUp" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".1">
+                            Навык говорения с первого урока
+                        </h1>
+                        <p class="text-muted mb-4" data-animation-out="fadeOutUp" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".4">
+                            активное воспроизведение как основополагающий принцип запоминания
+                        </p>
+                        @*<a class="btn btn-primary" asp-page="SelectLangFirst">Start now</a>
+                            <a  class="btn btn-primary" data-animation-out="fadeOutUp" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".7">
+                                    Start now
+                                </a>*@
+                    </div>
+                </div>
+            </div>
+            <!-- slider item -->
+            <div class="hero-slider-item">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="text-white" data-animation-out="fadeOutDown" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">
+                            7000 слов в контексте
+                        </h1>
+                        <p class="text-muted mb-4" data-animation-out="fadeOutDown" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".4">
+                            новые слова и правильное их применение
+                        </p>
+                        @*<a class="btn btn-primary" asp-page="SelectLangFirst">Start now</a>
+
+                            <a asp-page="/Account/Register" class="btn btn-primary" data-animation-out="fadeOutDown" data-delay-out="5" data-duration-in=".3" data-animation-in="zoomIn" data-delay-in=".7">
+                                    Start now
+                                </a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /hero slider -->
+<!-- banner-feature -->
+<section class="bg-gray">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+            <div class="col-xl-4 col-lg-5 align-self-end">
+                <img class="img-fluid w-100" src="/img/banner/banner-feature.png" alt="banner-feature">
+            </div>
+            <div class="col-xl-8 col-lg-7">
+                <div class="row feature-blocks bg-gray justify-content-between">
+                    <div class="col-sm-6 col-xl-5 mb-xl-5 mb-lg-3 mb-4 text-center text-sm-left">
+                        <i class="ti-book mb-xl-4 mb-lg-3 mb-4 feature-icon"></i>
+                        <h3 class="mb-xl-4 mb-lg-3 mb-4">Удобно</h3>
+                        <p>Используйте формат ауди или видео нлюбом устройстве -  телефоне, планшете, компьютере</p>
+                    </div>
+                    <div class="col-sm-6 col-xl-5 mb-xl-5 mb-lg-3 mb-4 text-center text-sm-left">
+                        <i class="ti-blackboard mb-xl-4 mb-lg-3 mb-4 feature-icon"></i>
+                        <h3 class="mb-xl-4 mb-lg-3 mb-4">Гарантировано</h3>
+                        <p>Многократное повторение способствует принятию информации на подсознательном уровне, вы начнете говорить и понимать на слух</p>
+                    </div>
+                    <div class="col-sm-6 col-xl-5 mb-xl-5 mb-lg-3 mb-4 text-center text-sm-left">
+                        <i class="ti-agenda mb-xl-4 mb-lg-3 mb-4 feature-icon"></i>
+                        <h3 class="mb-xl-4 mb-lg-3 mb-4">Быстро</h3>
+                        <p> занимайся самостоятельно в любое время - в спортзале, в дороге или на прогулке</p>
+                    </div>
+                    <div class="col-sm-6 col-xl-5 mb-xl-5 mb-lg-3 mb-4 text-center text-sm-left">
+                        <i class="ti-write mb-xl-4 mb-lg-3 mb-4 feature-icon"></i>
+                        <h3 class="mb-xl-4 mb-lg-3 mb-4">Качественно</h3>
+                        <p>материалы подобраны в зависимости от уровня знаний, и вы можете следить за своим прогрессом в личном кабинете</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /banner-feature -->
+<!-- about us -->
+<section class="section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 order-2 order-md-1">
+                <h2 class="section-title">Почему это работает</h2>
+                <p> - Многократное повторение способствует осмыслению и принятию информации на подсознательном уровне. </p>
+                <p> - Активное воспроизведение тренирует мышечную память.</p>
+                <p> - Правильное  интервальное повторение облегчает его последующее воспроизведение.</p>
+                @*<a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Start now</a>*@
+                @*<a class="btn btn-primary" asp-page="SelectLangFirst">Get started</a>*@
+            </div>
+            <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
+                <img class="img-fluid w-100" src="/img/about/about-us.jpg" alt="about image">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /about us -->
+<!-- courses-p -->
+@if (Model.SkLessons.Count() > 0)
+{
+    <section class="section-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex align-items-center section-title justify-content-between">
+                        <h2 class="mb-0 text-nowrap mr-3">@localizer.Get("xxSlovak Lessons")</h2>
+                        <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+                        <div>
+                            <a class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block" asp-route-culture="@requestCulture.Culture.Name" asp-route-lessons-folder-alias="@RoutersTree.GetLessonsFolderAliasName(requestCulture.Culture.Name, "sk")" asp-area="" asp-page="/Lessons/List">@localizer.Get("xxSee all")</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- course list -->
+            <div class="row justify-content-center ">
+                @foreach (Lesson item in Model.SkLessons)
+                {
+                    <div class="col-lg-4 col-sm-6 mb-5 card-item justify-content-center">
+                        <div class="bg">
+                        </div>
+                        <div class="card p-0 border-primary rounded-0 hover-shadow">
+                            @*<div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src='@string.Format("https://www.youtube.com/embed/{0}", item.Video1)'
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                            </div>*@
+                            <img src='@string.Format("{0}/{1}", Model.ImageBaseUrl, item.Image1)'/>
+                            <div class="card-body justify-content-center">
+                                <a asp-route-culture="@requestCulture.Culture.Name"
+                                   asp-page="/Lessons/Item"
+                                   asp-route-lessons-folder-alias='@RoutersTree.GetLessonsFolderAliasName(requestCulture.Culture.Name, "sk")'
+                                   asp-route-lesson-page-alias='@item.PageName'>
+                                    <h4 class="card-title">@item.Name</h4>
+                                </a>
+                                <p class="card-text mb-4">@item.Description.CutWithTail(50)</p>
+                                <a asp-route-culture="@requestCulture.Culture.Name"
+                                   asp-page="/Lessons/Item"
+                                   asp-route-lessons-folder-alias='@RoutersTree.GetLessonsFolderAliasName(requestCulture.Culture.Name, "sk")'
+                                   asp-route-lesson-page-alias='@item.PageName'>@localizer.Get("xxOpen")</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!-- /course list -->
+                <!-- mobile see all button -->
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a asp-route-culture="@requestCulture.Culture.Name"
+                           asp-route-lessons-folder-alias="@RoutersTree.GetLessonsFolderAliasName(requestCulture.Culture.Name, "sk")"
+                           asp-area=""
+                           asp-page="/Lessons/List"
+                           class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">@localizer.Get("xxSee all")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+<!-- /courses-p -->
+<!-- courses -->
+@if (Model.EnLessons.Count() > 0)
+{
+    <section class="section-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex align-items-center section-title justify-content-between">
+                        <h2 class="mb-0 text-nowrap mr-3">@localizer.Get("xxEnglish lessons")</h2>
+                        <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+                        <div>
+                            <a class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block" asp-route-culture="@requestCulture.Culture.Name" asp-route-lessons-folder-alias="@RoutersTree.GetLessonsFolderAliasName(requestCulture.Culture.Name, "en")" asp-area="" asp-page="/Lessons/List">@localizer.Get("xxSee all")</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- course list -->
+            <div class="row justify-content-center ">
+                @foreach (Lesson item in Model.EnLessons)
+                {
+                    <div class="col-lg-4 col-sm-6 mb-5 card-item justify-content-center">
+                        <div class="bg">
+                        </div>
+                        <div class="card p-0 border-primary rounded-0 hover-shadow">
+                            @*<div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src='@string.Format("https://www.youtube.com/embed/{0}", item.Video1)'
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>*@
+                            <img src='@string.Format("{0}/{1}", Model.ImageBaseUrl, item.Image1)' />
+                            <div class="card-body justify-content-center">
+                                <a asp-route-culture="@requestCulture.Culture.Name"
+                                   asp-page="/Lessons/Item"
+                                   asp-route-lessons-folder-alias='@RoutersTree.GetLessonsFolderAliasName(requestCulture.Culture.Name, "en")'
+                                   asp-route-lesson-page-alias='@item.PageName'>
+                                    <h4 class="card-title">@item.Name</h4>
+                                </a>
+                                <p class="card-text mb-4">@item.Description.CutWithTail(50)</p>
+                                <a asp-route-culture="@requestCulture.Culture.Name"
+                                   asp-page="/Lessons/Item"
+                                   asp-route-lessons-folder-alias='@RoutersTree.GetLessonsFolderAliasName(requestCulture.Culture.Name, "en")'
+                                   asp-route-lesson-page-alias='@item.PageName'>@localizer.Get("xxOpen")</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!-- /course list -->
+                <!-- mobile see all button -->
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a asp-route-culture="@requestCulture.Culture.Name"
+                           asp-route-lessons-folder-alias="@RoutersTree.GetLessonsFolderAliasName(requestCulture.Culture.Name, "en")"
+                           asp-area=""
+                           asp-page="/Lessons/List"
+                           class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">@localizer.Get("xxSee all")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+<!-- /courses -->
+<!-- cta -->
+<section class="section bg-primary text-mb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h6 class="text-white font-secondary mb-0">занимайся по индивидульной программе</h6>
+                <h2 class="section-title text-white">Создай персональный урок в личном кабинете</h2>
+                @*<a class="btn btn-secondary" asp-page="SelectLangFirst">Start now</a>*@
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /cta -->
+<!-- blog -->
+<section class="section pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title">Прокачай навыки до автоматизма</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <!-- blog post -->
+            <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+                <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+                    <img class="card-img-top rounded-0" src="/img/blog/post-1.jpg" alt="Post thumb">
+                    <div class="card-body">
+                        <!-- post meta -->
+                        <ul class="list-inline mb-3">
+                            <!-- post date -->
+                            <li class="list-inline-item mr-3 ml-0"></li>
+                            <!-- author -->
+                            <li class="list-inline-item mr-3 ml-0"></li>
+                        </ul>
+                        <a href="blog-single.html">
+                            <h4 class="card-title">Аудирование</h4>
+                        </a>
+                        <p class="card-text">Аудирование - это восприятие и понимание иностранной речи на слух. Даже если вы знаете слова и понимаете правила, то вам очень тяжело будет понимать английскую речь, если у вас нет навыка распознавания речи.</p>
+                        @*<a asp-page="slovatskiy-yazyk/besplatnyye" class="btn btn-primary btn-sm">список уроков</a>*@
+                    </div>
+                </div>
+            </article>
+            <!-- blog post -->
+            <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+                <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+                    <img class="card-img-top rounded-0" src="/img/blog/post-2.jpg" alt="Post thumb">
+                    <div class="card-body">
+                        <!-- post meta -->
+                        <ul class="list-inline mb-3">
+                            <!-- post date -->
+                            <li class="list-inline-item mr-3 ml-0"></li>
+                            <!-- author -->
+                            <li class="list-inline-item mr-3 ml-0"></li>
+                        </ul>
+                        <a href="blog-single.html">
+                            <h4 class="card-title">Говорение</h4>
+                        </a>
+                        <p class="card-text">Содержанием говорения является выражение мыслей в устной форме. В основе говорения лежат произносительные, лексические, грамматические навыки.</p>
+                        @*<a asp-page="slovatskiy-yazyk/besplatnyye" class="btn btn-primary btn-sm">список уроков</a>*@
+                    </div>
+                </div>
+            </article>
+            <!-- blog post -->
+            <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+                <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+                    <img class="card-img-top rounded-0" src="/img/blog/post-3.jpg" alt="Post thumb">
+                    <div class="card-body">
+                        <!-- post meta -->
+                        <ul class="list-inline mb-3">
+                            <!-- post date -->
+                            <li class="list-inline-item mr-3 ml-0"></li>
+                            <!-- author -->
+                            <li class="list-inline-item mr-3 ml-0"></li>
+                        </ul>
+                        <a href="blog-single.html">
+                            <h4 class="card-title">Перевод</h4>
+                        </a>
+                        <p class="card-text">чтобы «приучить» уши к иностранной речи. Сделайте первые шаги к пониманию английского на слух!</p>
+                        @*<a asp-page="slovatskiy-yazyk/besplatnyye" class="btn btn-primary btn-sm">список уроков</a>*@
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+<!-- /blog -->

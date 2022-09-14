@@ -1,0 +1,183 @@
+<div class="example-loading-shade" *ngIf="isLoadingResults">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div *ngFor="let playList of playLists; let ind = index">
+        <button *ngIf="!playList.isCurrent" mat-button color="primary" class="float-left m-2" (click)="selectPlayList(ind)">
+          playlist {{ind}}
+        </button>
+        <button *ngIf="playList.isCurrent" mat-stroked-button color="primary" class="float-left m-2">
+          playlist {{ind}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <button mat-button color="primary" (click)="skipToFirst(audioSPlayer.getState())" >
+        <mat-icon>first_page</mat-icon>
+      </button>
+      <button mat-button color="primary" (click)="skipToPrevious(audioSPlayer.getState())" [disabled]="buttonSkipPrevDisabled" >
+        <mat-icon>skip_previous</mat-icon>
+      </button>
+      <button *ngIf="audioSPlayer.getState() !== audioSPlayerState.plaing" mat-button color="primary" (click)="play()" [disabled]="buttonPlayDisabled" >
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+      <button *ngIf="audioSPlayer.getState() !== audioSPlayerState.stoped" mat-button color="primary" (click)="stop()" [disabled]="buttonStopDisabled">
+        <mat-icon>stop</mat-icon>
+      </button>
+      <button mat-button color="primary" (click)="skipToNext(audioSPlayer.getState())" [disabled]="buttonSkipNextDisabled">
+        <mat-icon>skip_next</mat-icon>
+      </button>
+      <button mat-button color="primary" (click)="skipToLast(audioSPlayer.getState())" >
+        <mat-icon>last_page</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div style="padding-top: 56.25%; background-color: beige; position: relative;">
+        <div *ngIf="currentScreen && currentScreen.activityType === PlayListActivityType.textFirst"
+          style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
+
+          <table class="video-wrapper-table"><tr>
+            <td class="video-wrapper-td">
+
+            <table [ngClass]="currentScreen.text.screenClass.level0"><tr>
+              <td [ngClass]="currentScreen.text.screenClass.level1">
+                <span [ngClass]="currentScreen.text.screenClass.level2">{{currentScreen.text.value}} </span>
+              </td></tr></table>
+
+            <table [ngClass]="currentScreen.pron.screenClass.level0"><tr>
+              <td [ngClass]="currentScreen.pron.screenClass.level1">
+                <span [ngClass]="currentScreen.pron.screenClass.level2">{{currentScreen.pron.value}}</span>
+              </td></tr></table>
+    
+            <table [ngClass]="currentScreen.transl.screenClass.level0"><tr>
+              <td [ngClass]="currentScreen.transl.screenClass.level1">
+                <span [ngClass]="currentScreen.transl.screenClass.level2">{{currentScreen.transl.value}}</span>
+              </td></tr></table>
+
+          </td></tr></table>
+        </div>
+
+        <div *ngIf="currentScreen && currentScreen.activityType === PlayListActivityType.translationFirst"
+          style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;">
+
+          <table class="video-wrapper-table"><tr>
+            <td class="video-wrapper-td">
+
+            <table [ngClass]="currentScreen.transl.screenClass.level0"><tr>
+              <td [ngClass]="currentScreen.transl.screenClass.level1">
+                <span [ngClass]="currentScreen.transl.screenClass.level2">{{currentScreen.transl.value}}</span>
+              </td></tr></table>
+
+            <table [ngClass]="currentScreen.text.screenClass.level0"><tr>
+              <td [ngClass]="currentScreen.text.screenClass.level1">
+                <span [ngClass]="currentScreen.text.screenClass.level2">{{currentScreen.text.value}} </span>
+              </td></tr></table>
+
+            <table [ngClass]="currentScreen.pron.screenClass.level0"><tr>
+              <td [ngClass]="currentScreen.pron.screenClass.level1">
+                <span [ngClass]="currentScreen.pron.screenClass.level2">{{currentScreen.pron.value}}</span>
+              </td></tr></table>
+
+          </td></tr></table>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      {{audioSPlayer.getDurationInSeconds()}}
+      <mat-slider
+        [max]="audioSPlayer.getDurationInSeconds()"
+        [min]="0"
+        [step]="1"
+        [value]="audioSPlayer.currentPositionInSeconds"
+        (change)="audioSPlayer.sliderChanged($event)"
+        >
+      </mat-slider>
+    </div>
+  </div>
+  <div class="row">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Playlist
+          </mat-panel-title>
+          <mat-panel-description style="text-align: right;">
+            List of audios to play
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="audioSPlayer.getPlayList()?.getItems()">
+    
+          <ng-container matColumnDef="text">
+            <th mat-header-cell *matHeaderCellDef>text</th>
+            <td mat-cell *matCellDef="let row">{{row.text}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef>type</th>
+            <td mat-cell *matCellDef="let row">{{PlayListItemType[row.type]}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="activity">
+            <th mat-header-cell *matHeaderCellDef>activity</th>
+            <td mat-cell *matCellDef="let row">{{PlayListActivityType[row.activityType]}}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="filename">
+            <th mat-header-cell *matHeaderCellDef>file</th>
+            <td mat-cell *matCellDef="let row">{{row.textSpeechFileName}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="pause">
+            <th mat-header-cell *matHeaderCellDef>pause</th>
+            <td mat-cell *matCellDef="let row" >{{row.pause}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="act">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let row">
+                <button *ngIf="!row.isCurrent" mat-button color="primary" (click)="setCurrent(row)"
+                        matTooltip="Set current">
+                    <mat-icon>done</mat-icon>
+                </button>
+                <button *ngIf="row.isCurrent" mat-button color="primary" [disabled]="true"
+                        matTooltip="Set current">
+                    <mat-icon>done_all</mat-icon>
+                </button>
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
+        </table>
+      
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            My Vocabulery
+          </mat-panel-title>
+          <mat-panel-description style="text-align: right;">
+            Manipulate with may vocabulery
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-word-filtered-list
+          [wordIDColumnVisibile]="true"
+          [translateWordButtonVisibile]="true"
+          [selectWordButtonVisibile]="false"
+          [managePhrasiesButtonVisibile]="true"
+          [editWordButtonVisibile]="true"
+          [deleteWordButtonVisibile]="true"
+          [addWordButtonVisibile]="true"
+        ></app-word-filtered-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'Lesson.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Lesson _$LessonFromJson(Map<String, dynamic> json) => Lesson(
+      json['lessonID'] as int,
+      json['parentID'] as int,
+      json['languageID'] as int,
+      Language.fromJson(json['language'] as Map<String, dynamic>),
+      json['nativeLanguageID'] as int,
+      json['name'] as String,
+      json['title'] as String,
+      json['description'] as String,
+      json['content'] as String,
+      json['order'] as int,
+      json['video1'] as String,
+      json['video2'] as String,
+      json['video3'] as String,
+      json['video4'] as String,
+      json['video5'] as String,
+      json['audio1'] as String,
+      json['audio2'] as String,
+      json['audio3'] as String,
+      json['audio4'] as String,
+      json['audio5'] as String,
+      json['description1'] as String,
+      json['description2'] as String,
+      json['description3'] as String,
+      json['description4'] as String,
+      json['description5'] as String,
+      DateTime.parse(json['modified'] as String),
+      json['state'] as String,
+      json['pageName'] as String,
+      json['articleByParamID'] as int,
+      ArticleByParam.fromJson(json['articleByParam'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$LessonToJson(Lesson instance) => <String, dynamic>{
+      'lessonID': instance.lessonID,
+      'parentID': instance.parentID,
+      'languageID': instance.languageID,
+      'language': instance.language,
+      'nativeLanguageID': instance.nativeLanguageID,
+      'name': instance.name,
+      'title': instance.title,
+      'description': instance.description,
+      'content': instance.content,
+      'order': instance.order,
+      'video1': instance.video1,
+      'video2': instance.video2,
+      'video3': instance.video3,
+      'video4': instance.video4,
+      'video5': instance.video5,
+      'audio1': instance.audio1,
+      'audio2': instance.audio2,
+      'audio3': instance.audio3,
+      'audio4': instance.audio4,
+      'audio5': instance.audio5,
+      'description1': instance.description1,
+      'description2': instance.description2,
+      'description3': instance.description3,
+      'description4': instance.description4,
+      'description5': instance.description5,
+      'modified': instance.modified.toIso8601String(),
+      'state': instance.state,
+      'pageName': instance.pageName,
+      'articleByParamID': instance.articleByParamID,
+      'articleByParam': instance.articleByParam,
+    };

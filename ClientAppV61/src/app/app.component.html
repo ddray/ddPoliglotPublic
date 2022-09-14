@@ -1,0 +1,162 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1>ddPoliglotV61.1</h1>
+    <span *ngIf="isAdmin" class="menu-spacer"></span>
+    <a *ngIf="isAdmin" mat-button [routerLink]="'/special-lessons'"> S-Lessons </a>
+    <span *ngIf="isAdmin" class="menu-spacer"></span>
+    <a *ngIf="isAdmin" mat-button [routerLink]="'/lessons'"> Lessons </a>
+    <span class="menu-spacer"></span>
+    <a mat-button [routerLink]="'/articles'"> Articles </a>
+    <span class="menu-spacer"></span>
+    <a mat-button [routerLink]="'/words'"> Words </a>
+    <span class="menu-spacer"></span>
+    <!-- <a mat-button [routerLink]="'/article-by-schema-list'"> By Schema </a>
+    <span class="menu-spacer"></span> -->
+    <a mat-button [routerLink]="'/article-by-vocabulary-list'"> By Vocabulary </a>
+    <span class="menu-spacer"></span>
+    <a mat-button [routerLink]="'/article-by-dialog-list'"> By Dialog </a>
+    <span class="menu-spacer"></span>
+    <a mat-button [routerLink]="'/special-play'"> SPlay </a>
+
+    <span *ngIf="isAdmin" class="menu-spacer"></span>
+    <a  *ngIf="isAdmin" mat-button [routerLink]="'/users'"> Users </a>
+
+    <span class="example-spacer"></span>
+
+    <span *ngIf="currUser" class="menu-spacer"></span>
+    <a mat-button *ngIf="currUser && currAppSetting" [routerLink]='' (click)="changeLanguages()" title="Manage">
+      {{currAppSetting.NativeLanguage.code + ' => ' + currAppSetting.LearnLanguage.code}}
+    </a>
+    <span *ngIf="currUser" class="menu-spacer"></span>
+    <a mat-button *ngIf="currUser" [routerLink]='' (click)="redirectToMenageProfile()" title="Manage">Hello {{ currUser.name }}</a>
+    <span *ngIf="currUser" class="menu-spacer"></span>
+    <a mat-button *ngIf="currUser" [routerLink]='' (click)="redirectToLogout()" [state]='{ local: true }' title="Logout">Logout</a>
+    <span *ngIf="!(currUser)" class="menu-spacer"></span>
+    <a mat-button [routerLink]='' (click)="redirectToMaiSite()">Main Site</a>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row class="page-toolbox" *ngIf="tbArticles_Toolbar_Visible">
+    <h5>Articles</h5>
+    <button type="button" mat-button class="crm-command-bar-button" [routerLink]="['/article', 0]">
+      <mat-icon>add_circle</mat-icon>
+      NEW
+    </button>
+  </mat-toolbar-row>
+
+
+  <mat-toolbar-row class="page-toolbox" *ngIf="tbWords_Toolbar_Visible">
+    <h5>Words</h5>
+    <!--<button type="button" mat-button class="crm-command-bar-button" [routerLink]="['/article', 0]">
+      <mat-icon>add_circle</mat-icon>
+      NEW
+    </button>-->
+  </mat-toolbar-row>
+
+  <mat-toolbar-row class="page-toolbox"
+                   *ngIf="tbArticle_Toolbar_Visible">
+
+    <h5>Article</h5>
+
+    <span style="margin: 0 10px;"></span>
+
+    <button mat-button class="crm-command-bar-button" (click)="articleSave()"
+            matTooltip="Save article"
+            [disabled]="tbArticle_Toolbar_Disabled || tbArticle_Toolbar_Save_Disabled">
+      <span *ngIf="tbArticle_Toolbar_Save_Loader" class="spinner-border spinner-border-sm"></span>
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+
+    <span style="margin: 0 1px;"></span>
+
+    <!--<button mat-button class="crm-command-bar-button" (click)="articleRecalculatePauses()"
+            matTooltip="Recalculate pauses"
+            [disabled]="tbArticle_Toolbar_Disabled || !tbArticle_Toolbar_Save_Disabled">
+      <span *ngIf="tbArticle_Toolbar_RecalculatePauses_Loader" class="spinner-border spinner-border-sm"></span>
+      <mat-icon>list</mat-icon>
+
+    </button>-->
+
+    <span style="margin: 0 1px;"></span>
+
+    <button type="button" (click)="articleMakeAudio()"
+            mat-button class="crm-command-bar-button"
+            matTooltip="Make audio file from selected phrases"
+            [disabled]="tbArticle_Toolbar_Disabled || !tbArticle_Toolbar_Save_Disabled || tbArticle_Toolbar_MakeAudio_Loader">
+      <span *ngIf="tbArticle_Toolbar_MakeAudio_Loader" class="spinner-border spinner-border-sm"></span>
+      <mat-icon style="color: darkred;">mic</mat-icon>
+      <span style="color: darkred;">Make audio</span>
+    </button>
+
+    <audio *ngIf="articleAudioFileValue && !(tbArticle_Toolbar_Disabled || tbArticle_Toolbar_MakeAudio_Loader)" style="height: 20px;"
+           matTooltip="last generated file maked from selected phrases"
+           src="{{articlesAudioUrl}}/{{articleAudioFileValue}}"
+           controls="controls">
+    </audio>
+
+    <span style="margin: 0 1px;"></span>
+
+  <button type="button" *ngIf="articleVideoFileValue && !(tbArticle_Toolbar_Disabled || tbArticle_Toolbar_MakeVideo_Loader)"
+            (click)="openShowVideoDialog()"
+            mat-button class="crm-command-bar-button"
+            matTooltip="Show Video"
+            [disabled]="tbArticle_Toolbar_Disabled || !tbArticle_Toolbar_Save_Disabled">
+      <mat-icon>videocam</mat-icon>
+      Show video
+    </button>
+
+   <button type="button" (click)="articleMakeVideo()"
+            mat-button class="crm-command-bar-button"
+            matTooltip="Make video file from selected phrases"
+            [disabled]="tbArticle_Toolbar_Disabled || !tbArticle_Toolbar_Save_Disabled || tbArticle_Toolbar_MakeVideo_Loader">
+      <span *ngIf="tbArticle_Toolbar_MakeVideo_Loader" class="spinner-border spinner-border-sm"></span>
+      <mat-icon style="color:darkred;">movie-creation</mat-icon>
+      <span style="color: darkred;">Make video</span>
+    </button>
+
+   
+   <mat-slide-toggle [disabled]="tbArticle_Toolbar_Disabled || tbArticle_Toolbar_MakeAudio_Loader"
+                      matTooltip="show phrases toolboxses"
+                      [(ngModel)]="articleShowToolboxValue"
+                      (ngModelChange)="articleShowToolbox($event)">
+    </mat-slide-toggle>
+    <button type="button"
+            mat-button class="crm-command-bar-button"
+            matTooltip='"|hello" - break before 0.2s &#013;
+            "||+hello" - break before 0.4s strength srtong&#013;
+            "||||-hello" - break before 0.8s strength weak&#013;
+            "(*hello)" - emphasys reduce&#13;
+            "(hello)" - emphasys strong&#13;
+            "||+(hello)" - emphasys strong + break before 0.4s strength srtong'
+           [matTooltipClass]="'my-tooltip'">
+           Special Help
+    </button>
+
+    <button type="button" (click)="articleCollapse()"
+            mat-button class="crm-command-bar-button"
+            matTooltip="Collapse all children phrases"
+            [disabled]="tbArticle_Toolbar_Disabled || tbArticle_Toolbar_MakeAudio_Loader">
+      <mat-icon>payment</mat-icon>
+      Collapse all
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/articles'"> Articles </a>
+      <a mat-list-item [routerLink]="'/words'"> Words </a>
+      <a mat-list-item (click)="sidenav.toggle()" href="">Close</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content id="rootSidenav">
+    <div style="height: 88vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

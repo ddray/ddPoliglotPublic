@@ -1,0 +1,21 @@
+<p>
+  <mat-form-field>
+    <label>text actor</label>
+    <mat-select [(ngModel)]="selectedActorKeyGuid">
+      <mat-option *ngFor="let actor of data.actors" value="{{actor.keyGuid}}">{{actor.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field>
+    <label>translated text actor</label>
+    <mat-select [(ngModel)]="selectedTrActorKeyGuid">
+      <mat-option *ngFor="let actor of data.trActors" value="{{actor.keyGuid}}">{{actor.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button (click)="ok()">Ok</button>
+</mat-dialog-actions>

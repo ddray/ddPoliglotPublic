@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="pageDescriptionContactUs" xml:space="preserve">
+    <value>How yor can contact us</value>
+  </data>
+  <data name="pageDescriptionHomePage" xml:space="preserve">
+    <value>Free English and Slovakian lessons</value>
+  </data>
+  <data name="pageDescriptionLessonsEn" xml:space="preserve">
+    <value>English language video and audio free lessons list</value>
+  </data>
+  <data name="pageDescriptionLessonsSk" xml:space="preserve">
+    <value>Slovakian language video and audio free lessons list</value>
+  </data>
+  <data name="pageTitleHomePage" xml:space="preserve">
+    <value>Learn English and other languages</value>
+  </data>
+  <data name="pageTitleLessonsEn" xml:space="preserve">
+    <value>Free English video and audio lessons list</value>
+  </data>
+  <data name="pageTitleLessonsSk" xml:space="preserve">
+    <value>Free Slovakian video and audio lessons list</value>
+  </data>
+  <data name="Please confirm your account by" xml:space="preserve">
+    <value>Please confirm your account by</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="xxAccess denied" xml:space="preserve">
+    <value>Access denied</value>
+  </data>
+  <data name="xxaccount" xml:space="preserve">
+    <value>account</value>
+  </data>
+  <data name="xxAssociate your account" xml:space="preserve">
+    <value>Associate your account</value>
+  </data>
+  <data name="xxclick here to log in" xml:space="preserve">
+    <value>click here to log in</value>
+  </data>
+  <data name="xxClick here to Logout" xml:space="preserve">
+    <value>Click here to Logout</value>
+  </data>
+  <data name="xxclicking here" xml:space="preserve">
+    <value>clicking here</value>
+  </data>
+  <data name="xxConfirm email" xml:space="preserve">
+    <value>Confirm email</value>
+  </data>
+  <data name="xxConfirm email change" xml:space="preserve">
+    <value>Confirm email change</value>
+  </data>
+  <data name="xxConfirm password" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="xxConfirm your email" xml:space="preserve">
+    <value>Confirm your email</value>
+  </data>
+  <data name="xxContact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="xxContact Us" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="xxCreate a new account." xml:space="preserve">
+    <value>Create a new account.</value>
+  </data>
+  <data name="xxDon't have access to your authenticator device? You can" xml:space="preserve">
+    <value>Don't have access to your authenticator device? You can</value>
+  </data>
+  <data name="xxEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="xxEmail Required" xml:space="preserve">
+    <value>Email Required</value>
+  </data>
+  <data name="xxEnglish lessons" xml:space="preserve">
+    <value>English lessons</value>
+  </data>
+  <data name="xxEnter your email." xml:space="preserve">
+    <value>Enter your email.</value>
+  </data>
+  <data name="xxFirst Name" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="xxFirst Name Required" xml:space="preserve">
+    <value>First Name Required</value>
+  </data>
+  <data name="xxForgot password confirmation" xml:space="preserve">
+    <value>Forgot password confirmation</value>
+  </data>
+  <data name="xxForgot your password?" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="xxFree English lesson" xml:space="preserve">
+    <value>Free English lesson</value>
+  </data>
+  <data name="xxFree Slovakian lesson" xml:space="preserve">
+    <value>Free Slovakian lesson</value>
+  </data>
+  <data name="xxHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="xxInvalid login attempt." xml:space="preserve">
+    <value>Invalid login attempt.</value>
+  </data>
+  <data name="xxLast Name" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="xxLast Name Required" xml:space="preserve">
+    <value>Last Name Required</value>
+  </data>
+  <data name="xxLessons" xml:space="preserve">
+    <value>Lessons</value>
+  </data>
+  <data name="xxLocalisation" xml:space="preserve">
+    <value>Localisation</value>
+  </data>
+  <data name="xxLocked out" xml:space="preserve">
+    <value>Locked out</value>
+  </data>
+  <data name="xxLog in" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="xxLog in using your" xml:space="preserve">
+    <value>Log in using your</value>
+  </data>
+  <data name="xxlog in with a recovery code" xml:space="preserve">
+    <value>log in with a recovery code</value>
+  </data>
+  <data name="xxLog out" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="xxMessage" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="xxMessage Required" xml:space="preserve">
+    <value>Message Required</value>
+  </data>
+  <data name="xxNext" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="xxOpen" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="xxPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="xxPlease check your email to confirm your account." xml:space="preserve">
+    <value>Please check your email to confirm your account.</value>
+  </data>
+  <data name="xxPlease check your email to reset your password." xml:space="preserve">
+    <value>Please check your email to reset your password.</value>
+  </data>
+  <data name="xxPlease enter an email address for this site below and click the Register button to finish logging in." xml:space="preserve">
+    <value>Please enter an email address for this site below and click the Register button to finish logging in.</value>
+  </data>
+  <data name="xxPrevious" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="xxPrivacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="xxRecovery code verification" xml:space="preserve">
+    <value>Recovery code verification</value>
+  </data>
+  <data name="xxRegister" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="xxRegister as a new user" xml:space="preserve">
+    <value>Register as a new user</value>
+  </data>
+  <data name="xxRegister confirmation" xml:space="preserve">
+    <value>Register confirmation</value>
+  </data>
+  <data name="xxRemember me?" xml:space="preserve">
+    <value>Remember me?</value>
+  </data>
+  <data name="xxResend" xml:space="preserve">
+    <value>Resend</value>
+  </data>
+  <data name="xxResend email confirmation" xml:space="preserve">
+    <value>Resend email confirmation</value>
+  </data>
+  <data name="xxReset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="xxReset password" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="xxReset password confirmation" xml:space="preserve">
+    <value>Reset password confirmation</value>
+  </data>
+  <data name="xxReset your password." xml:space="preserve">
+    <value>Reset your password.</value>
+  </data>
+  <data name="xxSee all" xml:space="preserve">
+    <value>See all</value>
+  </data>
+  <data name="xxSlovak Lessons" xml:space="preserve">
+    <value>Slovak Lessons</value>
+  </data>
+  <data name="xxSubmit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="xxThe password and confirmation password do not match." xml:space="preserve">
+    <value>The password and confirmation password do not match.</value>
+  </data>
+  <data name="xxThe {0} must be at least {2} and at max {1} characters long." xml:space="preserve">
+    <value>The {0} must be at least {2} and at max {1} characters long.</value>
+  </data>
+  <data name="xxThis account has been locked out, please try again later." xml:space="preserve">
+    <value>This account has been locked out, please try again later.</value>
+  </data>
+  <data name="xxTwo-factor authentication" xml:space="preserve">
+    <value>Two-factor authentication</value>
+  </data>
+  <data name="xxUse a local account to log in" xml:space="preserve">
+    <value>Use a local account to log in</value>
+  </data>
+  <data name="xxUse another service to log in." xml:space="preserve">
+    <value>Use another service to log in.</value>
+  </data>
+  <data name="xxUse another service to register." xml:space="preserve">
+    <value>Use another service to register.</value>
+  </data>
+  <data name="xxUser account locked out." xml:space="preserve">
+    <value>User account locked out.</value>
+  </data>
+  <data name="xxUser created a new account with password." xml:space="preserve">
+    <value>User created a new account with password.</value>
+  </data>
+  <data name="xxUser logged in." xml:space="preserve">
+    <value>User logged in.</value>
+  </data>
+  <data name="xxYou do not have access to this resource." xml:space="preserve">
+    <value>You do not have access to this resource.</value>
+  </data>
+  <data name="xxYou have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again." xml:space="preserve">
+    <value>You have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again.</value>
+  </data>
+  <data name="xxYou have successfully logged out of the application." xml:space="preserve">
+    <value>You have successfully logged out of the application.</value>
+  </data>
+  <data name="xxYou've successfully authenticated with" xml:space="preserve">
+    <value>You've successfully authenticated with</value>
+  </data>
+  <data name="xxYour login is protected with an authenticator app. Enter your authenticator code below." xml:space="preserve">
+    <value>Your login is protected with an authenticator app. Enter your authenticator code below.</value>
+  </data>
+  <data name="xxYour password has been reset. Please" xml:space="preserve">
+    <value>Your password has been reset. Please</value>
+  </data>
+</root>

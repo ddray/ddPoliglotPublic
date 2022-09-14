@@ -1,0 +1,8 @@
+<div style="max-height: 400px; overflow-y: auto;">
+  <app-article-by-param-list [canSelect]="true" (selectRow)="selectArticleByParam($event)"
+  ></app-article-by-param-list>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+</mat-dialog-actions>

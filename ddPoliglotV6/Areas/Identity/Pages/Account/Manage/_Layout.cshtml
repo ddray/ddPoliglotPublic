@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ddPoliglotV6.Data.Models;
+@using Microsoft.AspNetCore.Localization
+
+@{
+    var requestCultureFeature = Context.Features.Get<IRequestCultureFeature>();
+    var requestCulture = requestCultureFeature.RequestCulture;
+    ViewData["CultureName"] = requestCulture.Culture.Name;
+    ViewData["Noindex"] = true;
+}
+
+@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
+    {
+        Layout = (string)parentLayout;
+    }
+    else
+    {
+        Layout = "/Pages/Shared/_Layout.cshtml";
+    }
+}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="/img/backgrounds/page-title.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">Manage your account</a></li>
+                    <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+                </ul>
+                <p class="text-lighten"></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /page title -->
+<div class="container">
+    <div class="mt-5 mb-5">
+        <h4>Change your account settings</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
+                <partial name="_ManageNav" />
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

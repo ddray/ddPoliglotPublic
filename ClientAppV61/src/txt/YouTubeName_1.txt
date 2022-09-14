@@ -1,0 +1,7 @@
+Тренажер Английского. Урок ##lessonNum##. Слова ##firsWordNum##-##lastWordNum## | Учим во время работы. 
+Тренажер Английского. Урок ##lessonNum##. Слова ##firsWordNum##-##lastWordNum## | Учим во время бега. 
+Тренажер Английского. Урок ##lessonNum##. Слова ##firsWordNum##-##lastWordNum## | Учим, пока гуляем. 
+Тренажер Английского. Урок ##lessonNum##. Слова ##firsWordNum##-##lastWordNum## | Учим, пока варим. 
+Тренажер Английского. Урок ##lessonNum##. Слова ##firsWordNum##-##lastWordNum## | Учим, пока едем на работу. 
+Тренажер Английского. Урок ##lessonNum##. Слова ##firsWordNum##-##lastWordNum## | Учим, пока сидим в карантине. 
+

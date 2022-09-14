@@ -1,0 +1,103 @@
+﻿@page
+@model ddPoliglotV6.Pages.xIndex92_GenerateSchemaModel
+@{
+    ViewData["Title"] = "SelecteLangFirst";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="/img/backgrounds/page-title.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">Contact Us</a></li>
+                    <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+                </ul>
+                <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions.<br /> Just fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /page title -->
+<!-- /courses -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <h4>Lessons</h4>
+        </div>
+        <div class="row mt-2">
+            <ul>
+                @foreach (var lesson in Model.Lessons)
+                {
+                <li>
+                    <b>Lesson: @lesson.Num</b> <br />
+                    <div style="max-width: 1000px; overflow-wrap:break-word;">
+                        @*words for repetition in phrases: @string.Join(',', lesson.WordsForRepetitionInPhrases.Select(x => x.Text))*@
+                    </div>
+                    <ul class="mb-2">
+                        @foreach (var word in lesson.Words)
+                        {
+                            <li>
+                                @word.Text.
+                                <ul class="mb-2">
+                                    @foreach (var phrase in word.WordPhraseSelected)
+                                    {
+                                        <li>
+                                            @phrase.Text
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                    repetition: <br />
+                    <ul class="mb-2">
+                        @foreach (var word in lesson.WordsWithPhrasesForRepetition)
+                        {
+                            <li>
+                                @word.Text
+                                <ul class="mb-2">
+                                    @foreach (var phrase in word.WordPhraseSelected)
+                                    {
+                                        <li>
+                                            @phrase.Text
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <h4>Words</h4>
+        </div>
+        <div class="row mt-2">
+            @*<ul>
+                @foreach (var word in Model.Words)
+                {
+                    <li>
+                        <b>@word.Rate</b> text: @word.Text
+                        <ul class="mb-2">
+                            @foreach (var phrase in word.WordPhraseSelected)
+                            {
+                                <li>
+                                    text: @phrase.Text
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>*@
+        </div>
+    </div>
+</section>

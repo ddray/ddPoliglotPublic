@@ -1,0 +1,52 @@
+
+$mat-xsmall: 'max-width: 599px';
+$mat-small: 'max-width: 959px';
+
+// https://github.com/angular/material2/blob/master/src/lib/toolbar/toolbar.scss
+
+$mat-toolbar-height-desktop: 64px !default;
+$mat-toolbar-height-mobile: 56px !default;
+$mat-toolbar-row-padding: 16px !default;
+
+
+$crm-command-bar-height-desktop: 56px !default;
+// $crm-command-bar-height-mobile: 48px !default;
+$crm-command-bar-height-mobile: 0 !default;
+
+$crm-activity-bar-height-desktop: 56px !default;
+$crm-activity-bar-height-mobile: 48px !default;
+
+$crm-view-bar-height-desktop: 96px !default;
+$crm-view-bar-height-mobile: 84px !default;
+
+$crm-component-title-margin: 16px !default;
+
+
+
+.crm-command-bar-row {
+  height: $crm-command-bar-height-desktop !important;
+  min-height: $crm-command-bar-height-desktop !important;
+
+  padding-left: 8px;
+  padding-right: 8px;
+
+  @media (max-width: 599px) {
+    height: $crm-command-bar-height-mobile !important;
+    min-height: $crm-command-bar-height-mobile !important;
+  }
+}
+
+.crm-command-bar-button {
+  min-width: 48px;
+  padding: 0 16px;
+}
+
+/*
+
+.crm-command-bar-container {
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+*/

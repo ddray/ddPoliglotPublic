@@ -1,0 +1,51 @@
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+  .example-container > * {
+    width: 100%;
+  }
+
+/* Structure */
+.example-container {
+  position: relative;
+  /*min-height: 200px;
+    */
+}
+
+.example-table-container {
+  position: relative;
+  padding: 8px;
+  /*max-height: 400px;
+  overflow: auto;
+    */
+}
+
+table {
+  width: 100%;
+}
+
+
+
+.example-rate-limit-reached {
+  color: #980000;
+  max-width: 360px;
+  text-align: center;
+}
+
+.childrenOpened {
+  background-color: #fefefe;
+}
+
+.childrenClosed {
+  background-color: #fcfcfc;
+}
+
+.childrenButtonRow {
+  /*height: 50px;*/
+  margin: 10px;
+  padding: 10px;
+  width: 100%;
+}

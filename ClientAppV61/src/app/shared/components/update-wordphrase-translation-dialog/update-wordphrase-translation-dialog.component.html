@@ -1,0 +1,21 @@
+<div class="row" style="min-height: 100px; margin: 0px;">
+    Phrase: {{itemData.text}}
+</div>
+<div class="row" style="min-height: 100px; margin: 0px;">
+    <div class="col-12" style="padding: 0px 5px">
+        <div class="form-group rounded-lg border border-primary" style="width: 100%; background-color: aquamarine; padding: 5px;">
+            <textarea matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                [(ngModel)]="itemData.wordPhraseTranslation.text"
+                style="overflow: hidden; background-color: aquamarine;"
+                class="form-control"
+            ></textarea>
+        </div>
+    </div>        
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="ok()">{{itemData.wordPhraseTranslation.text ? 'Ok' : 'Translate and save'}}</button>
+</mat-dialog-actions>

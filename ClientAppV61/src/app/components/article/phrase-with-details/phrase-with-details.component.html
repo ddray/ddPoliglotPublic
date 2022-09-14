@@ -1,0 +1,188 @@
+<div class="row" id="ph_{{item.articlePhraseID}}" style="min-height: 100px; margin: 0px;">
+  <div [ngClass]="{'col-auto': true }">
+    <div class="row" style="height: 100%; ">
+      <div [ngClass]="{'col-2': true, 'isParent' : item.hasChildren, 'isChild': item.parentKeyGuid}">
+        <input type="checkbox" [(ngModel)]="item.selected" title="select row" />
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+
+  <div class="col-3" [style.opacity]="item.text ? 1 : 0.3"  style="padding: 0px 5px">
+    <div [ngClass]="{'positionUp': activityType === '0', 'positionDown': activityType === '1', 'row': true }">
+      <div class="col-10" style="padding: 0px 5px">
+        <div class="form-group rounded-lg border border-primary" style="width: 100%;">
+          <textarea #tareaText
+                    (keyup)="textAreaAdjust($event)"
+                    [(ngModel)]="item.text"
+                    (ngModelChange)="Changed($event)"
+                    [ngClass]="{
+                      'colorPhrase1': item.type === 0 && !item.silent,
+                      'colorPhrase3': item.type !== 0 && !item.silent,
+                      'colorPhrase4': item.silent,
+                      'form-control': true
+                      }"
+                    style="overflow: hidden;">
+          </textarea>
+
+          <span style="font-size: xx-small; color: gray;" *ngIf="item.showActor">
+            {{item.articleActor.name}}
+          </span>
+        </div>
+        
+      </div>
+      <div class="col-2" style="padding: 0px 5px">
+        <input type="number"
+               [(ngModel)]="item.pause"
+               style="width:30px; border:none; opacity:0.3;"
+               title="plus pause"
+               (ngModelChange)="Changed($event)" />
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3" [style.opacity]="item.trText ? 1 : 0.3" style="padding: 0px;">
+    <div [ngClass]="{'positionUp': activityType === '1', 'positionDown': activityType === '0', 'row': true }">
+      <div class="col-10"  style="padding: 0px 5px">
+        <div class="form-group rounded-lg border border-primary" style="width: 100%;">
+          <textarea #tareaTranslation
+                    (keyup)="textAreaAdjust($event)"
+                    [ngClass]="{
+                        'colorPhrase2': item.type === 0 && !item.silent,
+                        'colorPhrase3': item.type !== 0 && !item.silent,
+                        'colorPhrase4': item.silent,
+                        'form-control': true
+                        }"
+                    style="overflow: hidden;"
+                    [(ngModel)]="item.trText"
+                    (ngModelChange)="Changed($event)">
+          </textarea>
+          <span style="font-size: xx-small; color: gray;" *ngIf="item.showTrActor">
+            {{item.trArticleActor.name}}
+          </span>
+        </div>
+      </div>
+      <div class="col-2"  style="padding: 0px 5px">
+        <input type="number"
+               [(ngModel)]="item.trPause"
+               style="width:40px; border:none; opacity:0.3;"
+               title="plus pause"
+               (ngModelChange)="Changed($event)" />
+      </div>
+    </div>
+  </div>
+
+  <div class="col-5" (mouseenter)="mouseOver()" (mouseleave)="mouseOut()"  style="padding: 0px 5px">
+    <div *ngIf="isMousePresent || showToolbox">
+
+      <button type="button" mat-icon-button color="primary"
+              matTooltip="translate phrase text"
+              (click)="translate()">
+        <mat-icon>g_translate</mat-icon>
+        <span *ngIf="processed" class="spinner-border spinner-border-sm"></span>
+      </button>
+
+      <!--<button type="button" mat-icon-button color="primary"
+          matTooltip="split by phrases"
+          (click)="splitByPhrasesRow()">
+    <mat-icon>line_style</mat-icon>
+    <span *ngIf="processed" class="spinner-border spinner-border-sm"></span>
+  </button>-->
+
+      <button [disabled]="articleChanged" *ngIf="!item.hasChildren && !item.parentKeyGuid" type="button" mat-icon-button color="primary"
+              matTooltip="split by sub phrases"
+              (click)="splitBySubPhrasesRow()">
+        <mat-icon>line_style</mat-icon>
+        <span *ngIf="processed" class="spinner-border spinner-border-sm"></span>
+      </button>
+
+      <button [disabled]="articleChanged" *ngIf="!item.hasChildren && !item.parentKeyGuid" type="button" mat-icon-button color="primary"
+              matTooltip="split by and rundom generate"
+              (click)="splitForRandomGenerationRow()">
+        <mat-icon>vertical_split</mat-icon>
+        <span *ngIf="processed" class="spinner-border spinner-border-sm"></span>
+      </button>
+
+      <button [disabled]="articleChanged" type="button" mat-icon-button color="primary"
+              matTooltip="text to speach"
+              (click)="textToSpeechRow()">
+        <mat-icon>mic</mat-icon>
+        <span *ngIf="processed" class="spinner-border spinner-border-sm"></span>
+      </button>
+
+      <mat-button-toggle-group appearance="legacy" [(ngModel)]="activityType" (ngModelChange)="Changed($event)">
+        <mat-button-toggle value='0' aria-label="phrase first">
+          <mat-icon>border_left</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value='1' aria-label="translation first">
+          <mat-icon>border_right</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <button *ngIf="!item.hasChildren && !item.parentKeyGuid" type="button" mat-icon-button color="primary"
+              matTooltip="split selected text"
+              (click)="splitSelection(tareaText, tareaTranslation)">
+        <mat-icon>view_column</mat-icon>
+      </button>
+
+      <button type="button" mat-icon-button color="primary"
+              matTooltip="change row actors"
+              (click)="changeRowActors()">
+        <mat-icon>emoji_symbols</mat-icon>
+      </button>
+
+      <button *ngIf="!item.hasChildren" type="button" mat-icon-button color="primary"
+              matTooltip="move up"
+              (click)="moveUpRow()">
+        <mat-icon>arrow_upward</mat-icon>
+      </button>
+
+      <button *ngIf="!item.hasChildren" type="button" mat-icon-button color="primary"
+              matTooltip="move down"
+              (click)="moveDownRow()">
+        <mat-icon>arrow_downward</mat-icon>
+      </button>
+
+      <button *ngIf="!item.hasChildren || item.childrenClosed" type="button" mat-icon-button color="primary" matTooltip="add bellow"
+              (click)="insertRowAfter()">
+        <mat-icon>playlist_add</mat-icon>
+      </button>
+
+      <button *ngIf="!item.hasChildren" type="button" mat-icon-button color="primary"
+              matTooltip="Dublicate"
+              (click)="dublicateRow()">
+        <mat-icon>dns</mat-icon>
+      </button>
+
+      <button *ngIf="!item.hasChildren || item.childrenClosed" type="button" mat-icon-button color="primary"
+              matTooltip="Add dictor bellow"
+              (click)="addDictorSpeechRow()">
+        <mat-icon>person_add</mat-icon>
+      </button>
+
+      <button *ngIf="!item.silent" mat-icon-button color="warn" matTooltip="Mark as Silent"
+              type="button"
+              (click)="setSilentRow()">
+        <mat-icon>mic_none</mat-icon>
+      </button>
+
+      <button *ngIf="item.silent" mat-icon-button color="warn" matTooltip="Remove silent mark"
+              type="button"
+              (click)="unsetSilentRow()">
+        <mat-icon>mic_on</mat-icon>
+      </button>
+
+      <button mat-icon-button color="warn" matTooltip="Delete row"
+              type="button"
+              (click)="deleteRow()">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <audio *ngIf="item.textSpeechFileName" style="height:32px; width: 250px;" src="{{phrasesAudioUrl}}/{{item.textSpeechFileName}}" controls="controls">
+      </audio>
+
+      <audio *ngIf="item.trTextSpeechFileName" style="height:32px; width: 250px;" src="{{phrasesAudioUrl}}/{{item.trTextSpeechFileName}}" controls="controls">
+      </audio>
+    </div>
+  </div>
+</div>

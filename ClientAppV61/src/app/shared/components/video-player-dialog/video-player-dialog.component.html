@@ -1,0 +1,26 @@
+<div>
+  <div class="example-loading-shade"
+       *ngIf="isLoading">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
+
+  <h1 mat-dialog-title>Video player</h1>
+
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="example-container1">
+        <video 
+               width="320" height="240" controls
+               matTooltip="last generated video file maked from selected phrases">
+          <source src="{{articlesVideoUrl}}/{{articleVideoFileValue}}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Close</button>
+  </mat-dialog-actions>
+</div>
+

@@ -1,0 +1,25 @@
+<form [formGroup]="formGr" (submit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Native Language</mat-label>
+        <mat-select formControlName="languageN" >
+            <mat-option *ngFor="let ln of languages" value="{{ln.code}}">{{ln.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGr.controls['languageN'].hasError('required')">You must make a selection</mat-error>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <mat-form-field>
+        <mat-label>Language to learn</mat-label>
+        <mat-select formControlName="languageL" [errorStateMatcher]="matcher">
+            <mat-option *ngFor="let ln of languages" value="{{ln.code}}">{{ln.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGr.controls['languageL'].hasError('required')">You must make a selection</mat-error>
+        <mat-error *ngIf="formGr.hasError('isSame')">Cannot be same</mat-error>
+    </mat-form-field>
+    
+    <mat-dialog-actions align="end">
+        <button *ngIf="!onlyOk" mat-button type="button"  (click)="cancel()">Cancel</button>
+        <button mat-button type="submit">Ok</button>
+    </mat-dialog-actions>   
+ </form>

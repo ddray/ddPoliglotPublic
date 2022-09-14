@@ -1,0 +1,36 @@
+<div *ngIf="dataItem">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <button type="button" (click)="play()">Play</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h1>{{phraseText}}</h1>
+            </div>
+        </div>
+        <div *ngIf="audios">
+            <div *ngFor="let aud of audios">
+                <audio src="{{phrasesAudioUrl}}/{{aud}}.mp3" id="{{aud}}" preload="auto" >
+                </audio>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- <div *ngIf="dataItem">
+    <div class="container">
+        <div class="row" *ngFor="let articlePhrase of dataItem.articlePhrases">
+            <div class="col-6">
+                {{articlePhrase.text}}
+            </div>
+            <div class="col-6">
+                {{articlePhrase.trText}}
+            </div>
+        </div>
+    </div>
+</div> -->

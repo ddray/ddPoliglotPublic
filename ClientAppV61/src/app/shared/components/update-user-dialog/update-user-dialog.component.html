@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-content>
+      <h2>Roles</h2>
+      <ul>
+        <li *ngFor="let item of roles">
+            <mat-checkbox [(ngModel)]="item.checked">{{item.value}}</mat-checkbox>
+        </li>
+    </ul> 
+    </mat-card-content>
+  </mat-card>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="cancel()">Cancel</button>
+    <button mat-button type="button" (click)="save()">Save</button>
+  </mat-dialog-actions>
+
+

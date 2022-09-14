@@ -1,0 +1,94 @@
+﻿@page
+@model ddPoliglotV6.Pages.xIndex91_RepeatWordsInLessonsModel
+@{
+    ViewData["Title"] = "SelecteLangFirst";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="/img/backgrounds/page-title.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">Contact Us</a></li>
+                    <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+                </ul>
+                <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions.<br /> Just fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /page title -->
+
+<!-- /courses -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <h4>Words</h4>
+        </div>
+        <div class="row mt-2">
+            <ul>
+                @foreach (var word in Model.Words)
+                {
+                <li>
+                    <b>@word.Rate</b> text: @word.Text Grade: @word.Grade QtyRepeat: @word.QtyRepeat
+                    <ul class="mb-2">
+                        @foreach (var phrase in word.Phrases)
+                        {
+                            <li>
+                                <b>@phrase.Order</b> text: @phrase.Text
+                            </li>
+                        }
+                    </ul>
+                </li>
+                }
+            </ul>
+        </div>
+        <div class="row mt-5">
+            <h4>Lessons</h4>
+        </div>
+        <div class="row mt-2">
+            <ul>
+                @foreach (var lesson in Model.Lessons)
+                {
+                <li>
+                    @String.Format("{0} ", lesson.Num)
+                    <ul class="mb-2">
+                        @foreach (var word in lesson.WordsInLesson)
+                        {
+                            <li>
+                                <b>@word.Rate</b> text: @word.Text Grade: @word.Grade
+                            </li>
+                        }
+                    </ul>
+                    <ul class="mb-2">
+                        <li>
+                            <ul>
+                                @foreach (var word in lesson.WordsForRepetition)
+                                {
+                                    <li>
+                                        <b>@word.Rate</b> text: @word.Text Grade: @word.Grade
+                                    </li>
+                                }
+                            </ul>
+                            <ul>
+                                <li>
+                                    <ul>
+                                        @foreach (var phrase in lesson.PhrasesForRepetition)
+                                        {
+                                            <li>
+                                                <b>@phrase.Order</b> text: @phrase.Text
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+    </section>

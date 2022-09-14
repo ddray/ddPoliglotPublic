@@ -1,0 +1,83 @@
+﻿@page
+@model ddPoliglotV6.SelecteLangModel
+@{
+    ViewData["Title"] = "SelecteLangFirst";
+    Layout = "~/Pages/Shared/_LayoutEmpty.cshtml";
+}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg" style="padding-top: 18px; ">  
+</section>
+<!-- /page title -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6 point">
+            <div class="point-check check-up">
+                <img class="img-top" src="/img/lang/square_empty.svg" alt="img">
+                <h5>Выбери <br />язык</h5>
+            </div>
+            <img class="img-top-point" src="/img/lang/line_point.svg" alt="img">
+
+            <div class="point-check">
+                <img class="img-top" src="/img/lang/square_empty.svg" alt="img">
+                <h5>Выбери <br />уровень</h5>
+            </div>
+            <img class="img-top-point" src="/img/lang/line_point.svg" alt="img">
+
+            <div class="point-check">
+                <img class="img-top" src="/img/lang/square_empty.svg" alt="img">
+                <h5>Создай <br />аккаунт</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text text-bold" for="inputGroupSelect01">Мой язык:</label>
+                </div>
+                <select class="custom-select text-bold" id="inputGroupSelect01">
+                    <option value="1" selected>English</option>
+                    <option value="2">Slovatski</option>
+                    <option value="3">Русский</option>
+                </select>
+                <div class="input-group-prepend">
+                    <label class="input-group-text text-bold" for="inputGroupSelect01">Я хочу учить ...</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-3 col-sm-3 mb-5 card-item justify-content-center">
+            <a asp-page="SelectLangSecond">
+                <div class="card card-lang" style="width: 18rem;">
+                    <img class="card-img-top" src="/img/lang/france.jpg" alt="Card image cap">
+                    <div class="card-body-lang">
+                        <span class="card-text-lang">English</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        <div class="col-lg-3 col-sm-3 mb-5 card-item justify-content-center">
+            <a asp-page="SelectLangSecond">
+                <div class="card card-lang" style="width: 18rem;">
+                    <img class="card-img-top" src="/img/lang/bratislava.jpg" alt="Card image cap">
+                    <div class="card-body-lang">
+                        <span class="card-text-lang">Slovatski</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-sm-3 mb-5 card-item justify-content-center">
+            <a asp-page="SelectLangSecond">
+                <div class="card card-lang" style="width: 18rem;">
+                    <img class="card-img-top" src="/img/lang/russian.jpg" alt="Card image cap">
+                    <div class="card-body-lang">
+                        <span class="card-text-lang">Russian</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

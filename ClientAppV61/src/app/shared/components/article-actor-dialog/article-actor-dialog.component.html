@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>Actor voice add/edit</h1>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-12 example-container">
+      <mat-form-field>
+        <input matInput placeholder="voice name" [(ngModel)]="dataItem.name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="base voice"
+                    [(ngModel)]="dataItem.voiceName">
+          <mat-option *ngFor="let baseName of data.baseVoiceNames" value="{{baseName}}">{{baseName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <label>Pitch: {{dataItem.voicePitch}}</label>
+        <mat-slider style="margin:10px; width:400px;"
+                    [max]="20"
+                    [min]="-20"
+                    [step]="0.5"
+                    [thumbLabel]="true"
+                    [(ngModel)]="dataItem.voicePitch">
+          {{dataItem.voicePitch}}
+        </mat-slider>
+
+      </div>
+
+      <div>
+        <label>Speed: {{dataItem.voiceSpeed}}</label>
+        <mat-slider style="margin:10px; width:400px;"
+                    [max]="4"
+                    [min]="0.25"
+                    [step]="0.25"
+                    [thumbLabel]="true"
+                    [(ngModel)]="dataItem.voiceSpeed">
+          {{dataItem.voicePitch}}
+        </mat-slider>
+      </div>
+
+      <div>
+        <label>Default voice: </label>
+        <mat-slide-toggle style="margin:10px;" [(ngModel)]="dataItem.defaultInRole" [disabled]="defaultInRoleDisabled">
+        </mat-slide-toggle>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button (click)="ok()">Ok</button>
+</mat-dialog-actions>

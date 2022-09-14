@@ -1,0 +1,47 @@
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.colorPhrase1 {
+  background-color: lightcyan;
+}
+
+.colorPhrase2 {
+  background-color: lightgoldenrodyellow;
+}
+
+.colorPhrase3 {
+  background-color: white;
+}
+
+.colorPhrase4 {
+  background-color:goldenrod;
+}
+
+.positionUp {
+  margin-top: 0px;
+}
+
+.positionDown {
+  margin-top:30px;
+}
+
+.isChildren {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.leftColMark {
+  /*margin-left: 10px;*/
+  height: 100%;
+  width: 100%;
+}
+
+.isParent {
+  /*background-color:mintcream;*/
+  background-color:burlywood;
+}
+
+.isChild {
+  background-color:rgb(214, 210, 193);
+  /*margin-left: 20px;*/
+}

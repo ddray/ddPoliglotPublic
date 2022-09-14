@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Azure.Storage.Blobs" Version="12.8.0" />
+		<PackageReference Include="Google.Apis.YouTube.v3" Version="1.52.0.2364" />
+		<PackageReference Include="Google.Cloud.TextToSpeech.V1" Version="1.1.0" />
+		<PackageReference Include="Google.Cloud.Translation.V2" Version="2.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+		<PackageReference Include="NAudio" Version="1.10.0" />
+		<PackageReference Include="NAudio.Lame" Version="1.1.6" />
+		<PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+		<PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
+		<PackageReference Include="Azure.Storage.Common" Version="12.7.0" />
+		<PackageReference Include="Azure.Storage.Queues" Version="12.6.0" />
+		<PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\ddPoliglotV6.Data\ddPoliglotV6.Data.csproj" />
+	</ItemGroup>
+
+</Project>

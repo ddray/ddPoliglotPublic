@@ -1,0 +1,121 @@
+<div *ngIf="data">
+  <div class="container">
+    <mat-card style="margin: 10px;">
+      <div class="row">
+        <div class="col-6">
+          <div class="row">
+            <mat-card style="margin: 10px; width: 100%;">
+              <div class="row">
+                <div class="col-6">
+                  <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                      <h2>{{data.currentWord.text}}</h2>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">rate: {{data.currentWord.rate}}</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <mat-form-field class="example-form-field">
+                    <mat-label>Go to word with Rate</mat-label>
+                    <input matInput type="number" [(ngModel)]="data.goToRate">
+                    <button mat-button *ngIf="data.goToRate" matSuffix mat-icon-button aria-label="Clear" (click)="data.goToRate=undefined">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+                  <button mat-raised-button (click)="goToRate()">Go To (without save)</button>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+          <div class="row">
+            <div class="form-group rounded-lg border border-primary" 
+              style="width: 100%; padding: 5px; margin: 10px;"
+              >
+              <textarea matInput
+                  [(ngModel)]="data.phraseTexts"
+                  style="height: 150px;"
+                  class="form-control"
+              ></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <button style="margin: 10px;"  mat-raised-button color="primary" (click)="saveAndNext()">Save and Next</button>
+          </div>
+        </div>
+  
+        <div class="col-6">
+          <div cdkDropListGroup>
+            <mat-form-field class="example-chip-list" style="min-height: 20px;">
+              <mat-chip-list 
+                #chipList ="cdkDropList"
+                cdkDropList 
+                [cdkDropListData]="data.waiting"
+                (cdkDropListDropped)="drop($event)"
+                style="min-height: 20px;"
+                >
+                <mat-chip *ngFor="let word of data.waiting"
+                  cdkDrag
+                  [selectable]="true"
+                  [removable]="true" (removed)="removeFromWait(word)"
+                  (click)="selectFromWait(word)"
+                 >
+                  {{word.text}}
+                  <mat-icon matChipRemove >cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </mat-form-field>
+      
+            <div class="row">
+            </div>
+      
+            <div class="example-container">
+              <h2>Used In Phrases</h2>
+            
+              <mat-form-field class="example-chip-list" style="min-height: 20px;">
+                <mat-chip-list 
+                   style="min-height: 20px;"
+                  >
+                  <mat-chip *ngFor="let word of used"
+                    [selectable]="true"
+                    [removable]="true" 
+                    (removed)="removeFromUsed(word)"
+                    color="primary"
+                    style="background-color: rgb(209, 245, 245);"
+                   >
+                    {{word.text}}
+                    <mat-icon matChipRemove >cancel</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+              </mat-form-field>
+            </div>
+
+            <div class="example-container">
+              <h2>Excluded</h2>
+            
+              <mat-form-field class="example-chip-list" style="min-height: 20px;">
+                <mat-chip-list 
+                   style="min-height: 20px;"
+                  >
+                  <mat-chip *ngFor="let word of removed"
+                    [selectable]="true"
+                    [removable]="true" (removed)="removeFromRemoved(word)"
+                    color="accent"
+                    style="background-color: rgb(245, 229, 209);"
+                   >
+                    {{word.text}}
+                    <mat-icon matChipRemove >cancel</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+              </mat-form-field>
+              </div>
+          </div>
+        </div>
+      </div>
+      <mat-card-actions>
+      </mat-card-actions>
+    </mat-card>  
+  </div>
+</div>

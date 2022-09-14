@@ -1,0 +1,63 @@
+﻿@page
+@inject CommonLocalizationService localizer
+@model LoginWith2faModel
+@{
+    ViewData["Title"] = localizer.Get("xxTwo-factor authentication");
+    ViewData["Noindex"] = true;
+}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="/img/backgrounds/page-title.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">@ViewData["Title"]</a></li>
+                    <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+                </ul>
+                <p class="text-lighten"></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /page title -->
+<div class="container mt-3 mb-3">
+    <header>
+        <h1>@ViewData["Title"]</h1>
+        <hr />
+        <p>@localizer.Get("xxYour login is protected with an authenticator app. Enter your authenticator code below.")</p>
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
+                    <input asp-for="RememberMe" type="hidden" />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.TwoFactorCode"></label>
+                        <input asp-for="Input.TwoFactorCode" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Input.TwoFactorCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label asp-for="Input.RememberMachine">
+                                <input asp-for="Input.RememberMachine" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMachine)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">@localizer.Get("xxLog in")</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <p>
+            @localizer.Get("xxDon't have access to your authenticator device? You can")
+            <a id="recovery-code-login" asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Model.ReturnUrl">@localizer.Get("xxlog in with a recovery code")</a>.
+        </p>
+    </header>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

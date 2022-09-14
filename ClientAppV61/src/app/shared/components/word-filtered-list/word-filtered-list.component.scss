@@ -1,0 +1,33 @@
+.mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
+  padding: 0px;
+  min-width: 32px;
+}
+
+/* Column Widths */
+.mat-column-rate {
+    width: 70px;
+}
+
+.mat-column-wordID {
+    width: 70px;
+}
+
+.mat-column-text {
+    width: 100px;
+}
+
+.mat-column-grade {
+    width: 200px;
+}
+
+.mat-column-wordPhraseCountSelected {
+    width: 50px;
+}
+
+.mat-column-act {
+    min-width: 80px;
+}
+
+.mat-column-audio {
+    min-width: 120px;
+}

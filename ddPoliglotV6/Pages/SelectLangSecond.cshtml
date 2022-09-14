@@ -1,0 +1,115 @@
+﻿@page
+@model ddPoliglotV6.SelecteLangModel
+@{
+    ViewData["Title"] = "SelecteLangSecond";
+    Layout = "~/Pages/Shared/_LayoutEmpty.cshtml";
+}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg" style="padding-top: 18px">
+</section>
+<!-- /page title -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6 point">
+            <div class="point-check check-up">
+                <img class="img-top" src="~/img/lang/square_cheked.svg" alt="img">
+                <h5>Выбери <br />язык</h5>
+            </div>
+            <img class="img-top-point check-up" src="/img/lang/line_point.svg" alt="img">
+
+            <div class="point-check check-up">
+                <img class="img-top" src="/img/lang/square_empty.svg" alt="img">
+                <h5>Выбери <br />уровень</h5>
+            </div>
+            <img class="img-top-point" src="/img/lang/line_point.svg" alt="img">
+
+            <div class="point-check">
+                <img class="img-top" src="/img/lang/square_empty.svg" alt="img">
+                <h5>Создай <br />аккаунт</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8" style="text-align:center">
+            <h4>Я новичок и хочу учить с нуля</h4>
+            <div>
+                <a class="btn btn-primary btn-level-select" asp-area="Identity" asp-page="/Account/Register">Started</a>
+            </div>   
+            <h4 style="margin-top:30px">Я немного знаю язык и выберу уровень </h4>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-3 col-sm-3 mb-5 card-item justify-content-center">
+            <a asp-area="Identity" asp-page="/Account/Register">
+                <div class="card card-lang" style="width: 18rem;">
+                    <img class="card-img-top" src="/img/lang/france.jpg" alt="Card image cap">
+                    <div class="card-body-lang">
+                        <span class="card-text-lang">Beginner</span>
+                        @*<p>Начни с основ английского</p>*@
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        <div class="col-lg-3 col-sm-3 mb-5 card-item justify-content-center">
+            <a asp-area="Identity" asp-page="/Account/Register">
+                <div class="card card-lang" style="width: 18rem;">
+                    <img class="card-img-top" src="/img/lang/bratislava.jpg" alt="Card image cap">
+                    <div class="card-body-lang">
+                        <span class="card-text-lang">Elementary</span>
+                        @*<p>Начни с основ английского</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-sm-3 mb-5 card-item justify-content-center">
+            <a asp-area="Identity" asp-page="/Account/Register">
+                <div class="card card-lang" style="width: 18rem;">
+                    <img class="card-img-top" src="/img/lang/russian.jpg" alt="img">
+                    <div class="card-body-lang">
+                        <span class="card-text-lang">Pre-Intermediate</span>
+                        @*<p>Начни с основ английского</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-3 col-sm-3 mb-5 card-item justify-content-center">
+            <a asp-area="Identity" asp-page="/Account/Register">
+                <div class="card card-lang" style="width: 18rem;">
+                    <img class="card-img-top" src="/img/lang/france.jpg" alt="img">
+                    <div class="card-body-lang">
+                        <span class="card-text-lang">Intermediate</span>
+                        @*<p>Поддержи разговор</p>*@
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        <div class="col-lg-3 col-sm-3 mb-5 card-item justify-content-center">
+            <a asp-area="Identity" asp-page="/Account/Register">
+                <div class="card card-lang" style="width: 18rem;">
+                    <img class="card-img-top" src="/img/lang/bratislava.jpg" alt="imgp">
+                    <div class="card-body-lang">
+                        <span class="card-text-lang">Upper-Intermediate</span>
+                        @*<p>Не потеряйся в новой стране</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-sm-3 mb-5 card-item justify-content-center">
+            <a asp-area="Identity" asp-page="/Account/Register">
+                <div class="card card-lang" style="width: 18rem;">
+                    <img class="card-img-top" src="/img/lang/russian.jpg" alt="img">
+                    <div class="card-body-lang">
+                        <span class="card-text-lang">Advanced</span>
+                        @*<p>Сделай прорыв в работе</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+

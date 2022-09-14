@@ -1,0 +1,31 @@
+<p>
+  <mat-form-field style="width: 200px">
+    <input matInput placeholder="Item name" [(ngModel)]="data.baseName">
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field style="width: 250px">
+    <input matInput type="number" placeholder="startWordRate" [(ngModel)]="data.startWordRate">
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field style="width: 250px">
+    <input matInput type="number" placeholder="startLessonNum" [(ngModel)]="data.startLessonNum">
+  </mat-form-field>
+  <mat-form-field style="width: 250px">
+    <input matInput type="number" placeholder="endLessonNum" [(ngModel)]="data.endLessonNum">
+  </mat-form-field>
+  <mat-form-field style="width: 250px">
+    <input matInput type="number" placeholder="wordsByLesson" [(ngModel)]="data.wordsByLesson">
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field style="width: 250px">
+    <input matInput type="number" placeholder="maxWordsForRepetition" [(ngModel)]="data.maxWordsForRepetition">
+  </mat-form-field>
+</p>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button (click)="ok()">Ok</button>
+</mat-dialog-actions>

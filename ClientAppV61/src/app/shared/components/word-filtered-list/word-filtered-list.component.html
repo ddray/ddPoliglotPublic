@@ -1,0 +1,170 @@
+<div class="example-container">
+    <div class="example-loading-shade"
+         *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
+    <mat-card style="width: 100%; margin: 5px;">
+        <div>
+            <button *ngIf="addWordButtonVisibile" type="button" mat-button class="crm-command-bar-button" (click)="addNew()">
+                <mat-icon>add_circle</mat-icon>
+                NEW
+            </button>
+            <button *ngIf="addWordButtonVisibile" type="button" mat-button class="crm-command-bar-button" (click)="addNewFromList()">
+              <mat-icon>addchart</mat-icon>
+              Add From List
+          </button>
+      </div>
+      <form [formGroup]="searchForm" (submit)="onSubmitSearch()">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field style="width:100px;">
+                <input matInput formControlName="searchText" maxlength="20" placeholder="Filter">
+                <button type="button" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="searchForm.controls['searchText'].setValue(null)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </td>
+            <td class="td-num-with">
+              <mat-form-field style="width:70px;">
+                <mat-label>Rate</mat-label>
+                <input matInput type="number" min="1" formControlName="rateFrom">
+                <button type="button" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="searchForm.controls['rateFrom'].setValue(null)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </td>
+            <td class="td-num-with">
+              <mat-form-field style="width:70px;">
+                <mat-label>To</mat-label>
+                <input matInput type="number" min="1" formControlName="rateTo">
+                <button type="button" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="searchForm.controls['rateTo'].setValue(null)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </td>
+            <td class="td-num-with">
+              <mat-form-field style="width:70px;">
+                <mat-label>Grade</mat-label>
+                <input matInput type="number" max="5" min="1" formControlName="gradeFrom">
+                <button type="button" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="searchForm.controls['gradeFrom'].setValue(null)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </td>
+            <td class="td-num-with">
+              <mat-form-field style="width:70px;">
+                <mat-label>To</mat-label>
+                <input matInput type="number" max="5" min="1" formControlName="gradeTo">
+                <button type="button" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="searchForm.controls['gradeTo'].setValue(null)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <div>
+                <button mat-raised-button color="primary" style="margin: 10px;">Search</button>
+                <button mat-raised-button color="primary" style="margin: 10px;">Get recomended</button>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+  
+      <div class="example-table-container">
+        <table matSort matSortActive="rate" matSortDirection="asc" mat-table [dataSource]="data" class="example-table">
+
+          <ng-container matColumnDef="rate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate</th>
+            <td mat-cell *matCellDef="let row">{{row.rate}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="wordID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>wordID</th>
+            <td mat-cell *matCellDef="let row">{{row.wordID}}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="text">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Text</th>
+            <td mat-cell *matCellDef="let row" matTooltip="{{row.wordTranslation?.text}}">{{row.text}}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="grade">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Grade</th>
+            <td mat-cell *matCellDef="let row" matTooltip="How you know this word">
+              <app-rating [rating]="row.wordUser ? row.wordUser.grade : 0" [itemId]="row.wordID" [itemRef]="row" (ratingClick)="changeWordGrade($event)">
+              </app-rating>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="wordPhraseCountSelected">
+            <th mat-header-cell *matHeaderCellDef>cnt</th>
+            <td mat-cell *matCellDef="let row" matTooltip="Word Phrasies Selected Count">
+              {{row.wordPhraseSelected.length}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="act">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let row">
+              <button *ngIf="translateWordButtonVisibile" type="button" mat-button color="primary" (click)="editWordTranslation(row)" matTooltip="Edit word translation">
+                    <mat-icon>g_translate</mat-icon>
+              </button>
+
+              <button *ngIf="!row.selected && selectWordButtonVisibile" type="button" mat-button color="primary" (click)="selectRow.emit(row)" matTooltip="Add to the list of selected for new articles">
+                  <mat-icon>add_to_queue</mat-icon>
+              </button>
+
+              <button *ngIf="editWordButtonVisibile" mat-button color="primary" (click)="update(row)"
+                  matTooltip="Edit">
+                  <mat-icon>edit</mat-icon>
+              </button>
+              
+              <button *ngIf="managePhrasiesButtonVisibile" mat-icon-button matTooltip="Manage phrases" type="button" [color]="row.wordPhraseSelected?.length < 3 ? 'primary' : 'accent'" (click)="managePhrases(row)">
+                  <mat-icon>speaker_notes</mat-icon>
+              </button>
+
+              <button *ngIf="deleteWordButtonVisibile" mat-button color="primary" (click)="delete(row)"
+                      matTooltip="Delete">
+                  <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="audio">
+            <th mat-header-cell *matHeaderCellDef>audio</th>
+            <td mat-cell *matCellDef="let row">
+              <audio *ngIf="row.textSpeechFileName" matTooltip="word speach" style="height:32px; width: 32px;" src="{{phrasesAudioUrl}}/{{row.textSpeechFileName}}" controls="controls">
+              </audio>
+              <audio *ngIf="row.textSpeechFileNameSpeed1" matTooltip="word speach sl1" style="height:32px; width: 32px;" src="{{phrasesAudioUrl}}/{{row.textSpeechFileNameSpeed1}}" controls="controls">
+              </audio>
+              <audio *ngIf="row.textSpeechFileNameSpeed2" matTooltip="word speach sl2" style="height:32px; width: 32px;" src="{{phrasesAudioUrl}}/{{row.textSpeechFileNameSpeed2}}" controls="controls">
+              </audio>
+              <audio *ngIf="row.wordTranslation?.textSpeechFileName" matTooltip="word transl" style="height:32px; width: 32px;" src="{{phrasesAudioUrl}}/{{row.wordTranslation?.textSpeechFileName}}" controls="controls">
+              </audio>
+        
+              <!-- <mat-icon *ngIf="row.textSpeechFileName" matTooltip="word speach">mic</mat-icon> -->
+              <!-- <mat-icon *ngIf="row.wordTranslation?.textSpeechFileName" matTooltip="word translation speach">mic</mat-icon>              -->
+              <mat-icon *ngIf="row.wordPhraseSelectedIsRedyForLesson" matTooltip="word phrasies speach is ready">mic</mat-icon> 
+              <button *ngIf="row.wordPhraseSelected.length > 2" mat-button color="primary" (click)="makeSpeeches(row)"
+                matTooltip="make speeches ">
+                <mat-icon>vibration</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+      <mat-paginator [pageSizeOptions]="[10, 15, 30, 50, 100, 200]" showFirstLastButtons [length]="resultsLength"></mat-paginator>
+      <div>
+        <button type="button" mat-button class="crm-command-bar-button" (click)="addAll()">
+          <mat-icon>addchart</mat-icon>
+          Add All to lesson
+        </button>
+
+      </div>
+    </mat-card>
+</div>
+

@@ -1,0 +1,738 @@
+<div *ngIf="resultData?.phrasesMixType === phrasesMixType.wave">
+    <div class="example-container1">
+        <div class="row">
+            <div class="col-12">
+                <mat-slide-toggle [(ngModel)]="resultData.active" (ngModelChange)="modelChanged($event)">Active
+                </mat-slide-toggle>
+            </div>
+        </div>
+        <div *ngIf="resultData.active" style="margin-top:20px;">
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="offer" [(ngModel)]="resultData.offer1"
+                        (ngModelChange)="modelChanged($event)" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="offer" [(ngModel)]="resultData.offer2"
+                        (ngModelChange)="modelChanged($event)" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="offer" [(ngModel)]="resultData.offer3"
+                        (ngModelChange)="modelChanged($event)" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="offer" [(ngModel)]="resultData.offer4"
+                        (ngModelChange)="modelChanged($event)" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="offer" [(ngModel)]="resultData.offer5"
+                        (ngModelChange)="modelChanged($event)" />
+                </div>
+            </div>
+        </div>
+        <div *ngIf="resultData.active" style="margin-top:20px;">
+            <div class="row">
+                <div class="col-4">
+                    pose
+                </div>
+                <div class="col-4">
+                    need
+                </div>
+                <div class="col-4">
+                    repeat
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    0
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.m0" (ngModelChange)="modelChanged($event)"></mat-checkbox>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.m0_repeat" (ngModelChange)="modelChanged($event)">
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    0+1
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.m01" (ngModelChange)="modelChanged($event)"></mat-checkbox>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.m01_repeat" (ngModelChange)="modelChanged($event)">
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    0+1+2
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.m012" (ngModelChange)="modelChanged($event)"></mat-checkbox>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.m012_repeat" (ngModelChange)="modelChanged($event)">
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    0+1+2+3
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.m0123" (ngModelChange)="modelChanged($event)"></mat-checkbox>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.m0123_repeat" (ngModelChange)="modelChanged($event)">
+                    </mat-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example-container">
+
+        <div class="row">
+            <div class="col-12">
+                <mat-slide-toggle [(ngModel)]="resultData.trActive" (ngModelChange)="modelChanged($event)">Active
+                </mat-slide-toggle>
+            </div>
+        </div>
+        <div *ngIf="resultData.trActive" style="margin-top:20px;">
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="offer" [(ngModel)]="resultData.trOffer1"
+                        (ngModelChange)="modelChanged($event)" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="offer" [(ngModel)]="resultData.trOffer2"
+                        (ngModelChange)="modelChanged($event)" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="offer" [(ngModel)]="resultData.trOffer3"
+                        (ngModelChange)="modelChanged($event)" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="offer" [(ngModel)]="resultData.trOffer4"
+                        (ngModelChange)="modelChanged($event)" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="offer" [(ngModel)]="resultData.trOffer5"
+                        (ngModelChange)="modelChanged($event)" />
+                </div>
+            </div>
+        </div>
+        <div *ngIf="resultData.trActive" style="margin-top:20px;">
+            <div class="row">
+                <div class="col-4">
+                    pose
+                </div>
+                <div class="col-4">
+                    need
+                </div>
+                <div class="col-4">
+                    repeat
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    0
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.trM0" (ngModelChange)="modelChanged($event)"></mat-checkbox>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.trM0_repeat" (ngModelChange)="modelChanged($event)">
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    0+1
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.trM01" (ngModelChange)="modelChanged($event)"></mat-checkbox>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.trM01_repeat" (ngModelChange)="modelChanged($event)">
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    0+1+2
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.trM012" (ngModelChange)="modelChanged($event)"></mat-checkbox>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.trM012_repeat" (ngModelChange)="modelChanged($event)">
+                    </mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    0+1+2+3
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.trM0123" (ngModelChange)="modelChanged($event)">
+                    </mat-checkbox>
+                </div>
+                <div class="col-4">
+                    <mat-checkbox [(ngModel)]="resultData.trM0123_repeat" (ngModelChange)="modelChanged($event)">
+                    </mat-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="resultData?.phrasesMixType === phrasesMixType.random">
+  <table style="width: 100%">
+    <tr>
+      <td>
+        <div class="bd-callout bd-callout-color4">
+        <mat-form-field style="width: 100%" *ngIf="showGlobals">
+          <mat-label>Dictor Phrases (Article Title, before repetition)</mat-label>
+          <textarea matInput
+                    #firstDictorPhrases='ngModel' name='firstDictorPhrases' [(ngModel)]='resultData.firstDictorPhrases'
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="40"
+                    required
+                    style="overflow: hidden;"></textarea>
+
+          <mat-error *ngIf="firstDictorPhrases?.invalid && (firstDictorPhrases.dirty || firstDictorPhrases.touched)">
+            <div *ngIf="firstDictorPhrases.errors.required">
+              is required.
+            </div>
+          </mat-error>
+        </mat-form-field>
+        </div>
+      </td>
+      <td style="width:120px;">
+        <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('childFirstDictorPhrases', 'firstDictorPhrases')">
+          <mat-icon>playlist_add</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                (click)="resultData.firstDictorPhrases = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <div *ngIf="resultData?.phrasesMixType === phrasesMixType.random">
+    <table style="width: 100%">
+      <tr>
+        <td>
+          <div class="bd-callout bd-callout-color4">
+          <mat-form-field style="width: 100%" *ngIf="showGlobals">
+            <mat-label>Dictor Phrases (After repetition, Before new material)</mat-label>
+            <textarea matInput
+                      #firstBeforeDialogDictorPhrases='ngModel'
+                      name='firstBeforeDialogDictorPhrases'
+                      [(ngModel)]='resultData.firstBeforeDialogDictorPhrases'
+                      cdkTextareaAutosize
+                      #autosize="cdkTextareaAutosize"
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="40"
+                      required
+                      style="overflow: hidden;"></textarea>
+  
+            <mat-error *ngIf="firstBeforeDialogDictorPhrases?.invalid && (firstBeforeDialogDictorPhrases.dirty || firstBeforeDialogDictorPhrases.touched)">
+              <div *ngIf="firstBeforeDialogDictorPhrases.errors.required">
+                is required.
+              </div>
+            </mat-error>
+          </mat-form-field>
+          </div>
+        </td>
+        <td style="width:120px;">
+          <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('childFirstBeforeDialogDictorPhrases', 'firstBeforeDialogDictorPhrases')">
+            <mat-icon>playlist_add</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                  (click)="resultData.firstBeforeDialogDictorPhrases = ''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </table>
+  
+  <div class="example-container2">
+    <div *ngIf="resultData.active" style="margin-top:20px;">
+      <mat-accordion>
+        <mat-expansion-panel style="width: 100%">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Repeat Order By (with slow repeat)
+            </mat-panel-title>
+            <mat-panel-description style="text-align: right;">
+              {{resultData.repeatOrder && resultData.repeatOrder > 0 ? resultData.repeatOrder : 'No'}}
+              {{resultData.addSlow2InRepeatOrder && resultData.repeatOrder && resultData.repeatOrder > 0 ? ' +very slow' : ''}}
+              {{resultData.addSlowInRepeatOrder && resultData.repeatOrder && resultData.repeatOrder > 0 ? ' +slow' : ''}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <table style="width: 100%">
+            <tr>
+              <td>
+                <div class="bd-callout bd-callout-color2">
+                <mat-form-field style="width: 100%">
+                  <mat-label>Dictor Phrases before</mat-label>
+                  <textarea matInput
+                            #beforeByOrderMixDictorPhrases='ngModel' name='beforeByOrderMixDictorPhrases' [(ngModel)]='resultData.beforeByOrderMixDictorPhrases'
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="40"
+                            style="overflow: hidden; "></textarea>
+                </mat-form-field>
+                </div>
+            </td>
+              <td style="width:120px;">
+                <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('beforeByOrderMixDictorPhrases', 'beforeByOrderMixDictorPhrases')">
+                  <mat-icon>playlist_add</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                        (click)="resultData.beforeByOrderMixDictorPhrases = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </table>
+
+
+          <div class="row">
+            <div class="col-8">repeat in order</div>
+            <div class="col-4">
+              <input type="number" [(ngModel)]="resultData.repeatOrder" (ngModelChange)="modelChanged($event)"
+                     min="0" style="width: 50px;" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8">add extra slow (order)</div>
+            <div class="col-4">
+              <input type="checkbox" [(ngModel)]="resultData.addSlow2InRepeatOrder"
+                     (ngModelChange)="modelChanged($event)" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8">add slow (order)</div>
+            <div class="col-4">
+              <input type="checkbox" [(ngModel)]="resultData.addSlowInRepeatOrder"
+                     (ngModelChange)="modelChanged($event)" />
+            </div>
+          </div>
+          <table style="width: 100%">
+            <tr>
+              <td>
+                <div class="bd-callout bd-callout-color2">
+                <mat-form-field style="width: 100%; margin-top:15px;">
+                  <mat-label>Dictor Phrases inside (use '///' as divider)</mat-label>
+                  <textarea matInput
+                            #insideByOrderMixDictorPhrases='ngModel' name='insideByOrderMixDictorPhrases' [(ngModel)]='resultData.insideByOrderMixDictorPhrases'
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="40"
+                            style="overflow: hidden; "></textarea>
+                </mat-form-field>
+                </div>
+              </td>
+              <td style="width:120px;">
+                <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('insideByOrderMixDictorPhrases', 'insideByOrderMixDictorPhrases')">
+                  <mat-icon>playlist_add</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                        (click)="resultData.insideByOrderMixDictorPhrases = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </table>
+
+        </mat-expansion-panel>
+
+
+        <mat-expansion-panel style="width: 100%">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Mix Base Words
+            </mat-panel-title>
+            <mat-panel-description style="text-align: right;">
+              {{resultData.repeatBaseWord && resultData.repeatBaseWord > 0 ? resultData.repeatBaseWord : 'No'}}/
+              {{resultData.trRepeatBaseWord && resultData.trRepeatBaseWord > 0 ? resultData.trRepeatBaseWord : 'No'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <table style="width: 100%">
+            <tr>
+              <td>
+                <div class="bd-callout bd-callout-color3">
+                <mat-form-field style="width: 100%">
+                  <mat-label>Dictor Phrases before</mat-label>
+                  <textarea matInput
+                            #beforeBaseWordsDirMixDictorPhrases='ngModel' name='beforeBaseWordsDirMixDictorPhrases' [(ngModel)]='resultData.beforeBaseWordsDirMixDictorPhrases'
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="40"
+                            style="overflow: hidden; "></textarea>
+                </mat-form-field>
+                </div>
+              </td>
+              <td style="width:120px;">
+                <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('beforeBaseWordsDirMixDictorPhrases', 'beforeBaseWordsDirMixDictorPhrases')">
+                  <mat-icon>playlist_add</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                        (click)="resultData.beforeBaseWordsDirMixDictorPhrases = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </table>
+
+
+          <div class="row">
+            <div class="col-8">{{'Mix base words ' + appSetting.LearnLanguage.code + ' -> ' + appSetting.NativeLanguage.code }}</div>
+            <div class="col-4">
+              <input type="number" [(ngModel)]="resultData.repeatBaseWord" (ngModelChange)="modelChanged($event)"
+                     min="0" style="width: 50px;" />
+            </div>
+          </div>
+            <table style="width: 100%">
+              <tr>
+                <td>
+                  <div class="bd-callout bd-callout-color3">
+                  <mat-form-field style="width: 100%; margin-top:15px;">
+                    <mat-label>Dictor Phrases inside (use '///' as divider)</mat-label>
+                    <textarea matInput
+                              #insideBaseWordsDirMixDictorPhrases='ngModel' name='insideBaseWordsDirMixDictorPhrases' [(ngModel)]='resultData.insideBaseWordsDirMixDictorPhrases'
+                              cdkTextareaAutosize
+                              #autosize="cdkTextareaAutosize"
+                              cdkAutosizeMinRows="1"
+                              cdkAutosizeMaxRows="40"
+                              style="overflow: hidden; "></textarea>
+                  </mat-form-field>
+                  </div>
+                </td>
+                <td style="width:120px;">
+                  <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('insideBaseWordsDirMixDictorPhrases', 'insideBaseWordsDirMixDictorPhrases')">
+                    <mat-icon>playlist_add</mat-icon>
+                  </button>
+                  <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                          (click)="resultData.insideBaseWordsDirMixDictorPhrases = ''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </table>
+
+
+
+            <hr />
+            <hr />
+            <table style="width: 100%">
+              <tr>
+                <td>
+                  <div class="bd-callout bd-callout-color31">
+                  <mat-form-field style="width: 100%; margin-top:15px;">
+                    <mat-label>Dictor Phrases before</mat-label>
+                    <textarea matInput
+                              #beforeBaseWordsRevMixDictorPhrases='ngModel' name='beforeBaseWordsRevMixDictorPhrases' [(ngModel)]='resultData.beforeBaseWordsRevMixDictorPhrases'
+                              cdkTextareaAutosize
+                              #autosize="cdkTextareaAutosize"
+                              cdkAutosizeMinRows="1"
+                              cdkAutosizeMaxRows="40"
+                              style="overflow: hidden; "></textarea>
+                  </mat-form-field>
+                  </div>
+                </td>
+                <td style="width:120px;">
+                  <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('beforeBaseWordsRevMixDictorPhrases', 'beforeBaseWordsRevMixDictorPhrases')">
+                    <mat-icon>playlist_add</mat-icon>
+                  </button>
+                  <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                          (click)="resultData.beforeBaseWordsRevMixDictorPhrases = ''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </table>
+
+          <div class="row">
+            <div class="col-8">{{'Mix base words ' + appSetting.NativeLanguage.code + ' -> ' + appSetting.LearnLanguage.code }}</div>
+            <div class="col-4">
+              <input type="number" [(ngModel)]="resultData.trRepeatBaseWord"
+                     (ngModelChange)="modelChanged($event)" min="0" style="width: 50px;" />
+            </div>
+          </div>
+          <table style="width: 100%">
+            <tr>
+              <td>
+                <div class="bd-callout bd-callout-color31">
+                <mat-form-field style="width: 100%; margin-top:15px;">
+                  <mat-label>Dictor Phrases inside (use '///' as divider)</mat-label>
+                  <textarea matInput
+                            #insideBaseWordsRevMixDictorPhrases='ngModel' name='insideBaseWordsRevMixDictorPhrases' [(ngModel)]='resultData.insideBaseWordsRevMixDictorPhrases'
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="40"
+                            style="overflow: hidden; "></textarea>
+
+                </mat-form-field>
+                </div>
+              </td>
+              <td style="width:120px;">
+                <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('insideBaseWordsRevMixDictorPhrases', 'insideBaseWordsRevMixDictorPhrases')">
+                  <mat-icon>playlist_add</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                        (click)="resultData.insideBaseWordsRevMixDictorPhrases = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </table>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="width: 100%">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Mix All Words and phrases
+            </mat-panel-title>
+            <mat-panel-description style="text-align: right;">
+              {{resultData.repeat && resultData.repeat > 0 ? resultData.repeat : 'No'}}/
+              {{resultData.trRepeat && resultData.trRepeat > 0 ? resultData.trRepeat : 'No'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <table style="width: 100%">
+            <tr>
+              <td>
+                <div class="bd-callout bd-callout-color5">
+                <mat-form-field style="width: 100%">
+                  <mat-label>Dictor Phrases before</mat-label>
+                  <textarea matInput
+                            #beforeAllDirMixDictorPhrases='ngModel' name='beforeAllDirMixDictorPhrases' [(ngModel)]='resultData.beforeAllDirMixDictorPhrases'
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="40"
+                            style="overflow: hidden; "></textarea>
+                </mat-form-field>
+                </div>
+              </td>
+              <td style="width:120px;">
+                <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('beforeAllDirMixDictorPhrases', 'beforeAllDirMixDictorPhrases')">
+                  <mat-icon>playlist_add</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                        (click)="resultData.beforeAllDirMixDictorPhrases = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </table>
+
+
+          <div class="row">
+            <div class="col-8">{{'Mix words and phrases ' + appSetting.LearnLanguage.code + ' -> ' + appSetting.NativeLanguage.code }}</div>
+            <div class="col-4">
+              <input type="number" [(ngModel)]="resultData.repeat" (ngModelChange)="modelChanged($event)" min="0"
+                     style="width: 50px;" />
+            </div>
+          </div>
+
+            <table style="width: 100%">
+              <tr>
+                <td>
+                  <div class="bd-callout bd-callout-color5">
+                  <mat-form-field style="width: 100%; margin-top:15px;">
+                    <mat-label>Dictor Phrases inside (use '///' as divider)</mat-label>
+                    <textarea matInput
+                              #insideAllDirMixDictorPhrases='ngModel' name='insideAllDirMixDictorPhrases' [(ngModel)]='resultData.insideAllDirMixDictorPhrases'
+                              cdkTextareaAutosize
+                              #autosize="cdkTextareaAutosize"
+                              cdkAutosizeMinRows="1"
+                              cdkAutosizeMaxRows="40"
+                              style="overflow: hidden; "></textarea>
+                  </mat-form-field>
+                  </div>
+                </td>
+                <td style="width:120px;">
+                  <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('insideAllDirMixDictorPhrases', 'insideAllDirMixDictorPhrases')">
+                    <mat-icon>playlist_add</mat-icon>
+                  </button>
+                  <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                          (click)="resultData.insideAllDirMixDictorPhrases = ''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </table>
+
+
+
+            <hr />
+            <hr />
+            <table style="width: 100%">
+              <tr>
+                <td>
+                  <div class="bd-callout bd-callout-color51">
+                  <mat-form-field style="width: 100%; margin-top:15px;">
+                    <mat-label>Dictor Phrases before</mat-label>
+                    <textarea matInput
+                              #beforeAllRevMixDictorPhrases='ngModel' name='beforeAllRevMixDictorPhrases' [(ngModel)]='resultData.beforeAllRevMixDictorPhrases'
+                              cdkTextareaAutosize
+                              #autosize="cdkTextareaAutosize"
+                              cdkAutosizeMinRows="1"
+                              cdkAutosizeMaxRows="40"
+                              style="overflow: hidden; "></textarea>
+                  </mat-form-field>
+                </div>
+              </td>
+                <td style="width:120px;">
+                  <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('beforeAllRevMixDictorPhrases', 'beforeAllRevMixDictorPhrases')">
+                    <mat-icon>playlist_add</mat-icon>
+                  </button>
+                  <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                          (click)="resultData.beforeAllRevMixDictorPhrases = ''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </td>
+              </tr>
+            </table>
+
+          <div class="row">
+            <div class="col-8">{{'Mix words and phrases ' + appSetting.NativeLanguage.code + ' -> ' + appSetting.LearnLanguage.code }}</div>
+            <div class="col-4">
+              <input type="number" [(ngModel)]="resultData.trRepeat" (ngModelChange)="modelChanged($event)"
+                     min="0" style="width: 50px;" />
+            </div>
+          </div>
+          <table style="width: 100%">
+            <tr>
+              <td>
+                <div class="bd-callout bd-callout-color51">
+                <mat-form-field style="width: 100%; margin-top:15px;">
+                  <mat-label>Dictor Phrases inside (use '///' as divider)</mat-label>
+                  <textarea matInput
+                            #insideAllRevMixDictorPhrases='ngModel' name='insideAllRevMixDictorPhrases' [(ngModel)]='resultData.insideAllRevMixDictorPhrases'
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="40"
+                            style="overflow: hidden; "></textarea>
+
+                </mat-form-field>
+                </div>
+              </td>
+              <td style="width:120px;">
+                <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('insideAllRevMixDictorPhrases', 'insideAllRevMixDictorPhrases')">
+                  <mat-icon>playlist_add</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                        (click)="resultData.insideAllRevMixDictorPhrases = ''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </table>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+
+  <table style="width: 100%">
+    <tr>
+      <td>
+        <div class="bd-callout bd-callout-color4">
+        <mat-form-field style="width: 100%" *ngIf="showGlobals">
+          <mat-label>Dictor Phrases (in the end but before "Finish dialog repeat")</mat-label>
+          <textarea matInput
+                    #beforeFinishDictorPhrases='ngModel' name='beforeFinishDictorPhrases' [(ngModel)]='resultData.beforeFinishDictorPhrases'
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="40"
+                    style="overflow: hidden; "></textarea>
+        </mat-form-field>
+        </div>
+      </td>
+      <td style="width:120px;">
+        <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('childBeforeFinishDictorPhrases', 'beforeFinishDictorPhrases')">
+          <mat-icon>playlist_add</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                (click)="resultData.beforeFinishDictorPhrases = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <table style="width: 100%">
+    <tr>
+      <td>
+        <div class="bd-callout bd-callout-color4">
+        <mat-form-field style="width: 100%" *ngIf="showGlobals">
+          <mat-label>Dictor Phrases in Finish</mat-label>
+          <textarea matInput
+                    #finishDictorPhrases='ngModel' name='finishDictorPhrases' [(ngModel)]='resultData.finishDictorPhrases'
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="40"
+                    style="overflow: hidden; "></textarea>
+        </mat-form-field>
+        </div>
+      </td>
+      <td style="width:120px;">
+        <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('childFinishDictorPhrases', 'finishDictorPhrases')">
+          <mat-icon>playlist_add</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                (click)="resultData.finishDictorPhrases = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+<div style="margin-top:20px;">
+</div>
+
+<div class="row" *ngIf="resultData">
+    <div class="col-12 center-block text-center">
+        <mat-slide-toggle [(ngModel)]="resultData.trFirst" (ngModelChange)="modelChanged($event)">Translation group first</mat-slide-toggle>
+    </div>
+</div>

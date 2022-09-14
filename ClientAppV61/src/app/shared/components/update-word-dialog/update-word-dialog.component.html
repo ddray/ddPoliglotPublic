@@ -1,0 +1,37 @@
+<div class="example-container">
+  <div class="example-loading-shade"
+       *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="row" style="min-height: 100px; margin: 0px;">
+    Word: &nbsp;<b>{{data.text}}</b>
+  </div>
+  <div class="row">
+    <form [formGroup]="formGr" (submit)="onSubmit()" id="documentEditForm" #documentEditForm="ngForm">
+      <mat-form-field style="width: 100%">
+        <input matInput formControlName="text" placeholder="word text">
+        <mat-error *ngIf="formGr.controls['text'].hasError('required')">required</mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <input type="number" matInput formControlName="rate" placeholder="word rate">
+        <mat-error *ngIf="formGr.controls['rate'].hasError('required')">required</mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <input matInput formControlName="pronunciation" placeholder="word pronunciation">
+        <mat-error *ngIf="formGr.controls['pronunciation'].hasError('required')">required</mat-error>
+      </mat-form-field>
+      <mat-dialog-actions align="end">
+        <button mat-button type="button" (click)="cancel()">Cancel</button>
+        <button mat-button type="submit">Save</button>
+      </mat-dialog-actions>
+    </form>
+  </div>
+  <div class="row" style="margin-top: 20px;">
+    <audio *ngIf="data.textSpeechFileName" style="height:32px; width: 250px;" src="{{phrasesAudioUrl}}/{{data.textSpeechFileName}}" controls="controls">
+    </audio>
+    <audio *ngIf="data.textSpeechFileNameSpeed1" style="height:32px; width: 250px;" src="{{phrasesAudioUrl}}/{{data.textSpeechFileNameSpeed1}}" controls="controls">
+    </audio>
+    <audio *ngIf="data.textSpeechFileNameSpeed2" style="height:32px; width: 250px;" src="{{phrasesAudioUrl}}/{{data.textSpeechFileNameSpeed2}}" controls="controls">
+    </audio>
+  </div>
+</div>

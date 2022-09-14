@@ -1,0 +1,26 @@
+﻿@page
+@model ddPoliglotV6.Pages.xIndex04_GetPhCandidatesForWordModel
+@{
+}
+
+<div style="margin-top:200px; margin-bottom:200px;">
+    <ol type="1" style="list-style-type:decimal">
+        @foreach (var wordWithCandidates in Model.Results)
+        {
+        <li>
+            <span>++@wordWithCandidates.Word.Text /// @wordWithCandidates.Word.WordTranslation.Text /// - (@wordWithCandidates.Word.Rate :@wordWithCandidates.Word.WordID:)  </span>
+            <ul>
+                @foreach (var cand in wordWithCandidates.Candidstes)
+                {
+                <li>
+                    ##@cand.WordPhrase.Text /// @(cand.WordPhrase.WordPhraseTranslation?.Text ?? "") /// - (@string.Join(',', cand.Words.OrderBy(x => x.Rate).Select(x => $"{x.Text}-{x.Rate} :{x.WordID}:   ")))
+                </li>
+                }
+            </ul>
+        </li>
+        }
+    </ol>
+</div>
+
+
+

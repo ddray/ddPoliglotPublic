@@ -1,0 +1,63 @@
+﻿@page
+@inject CommonLocalizationService localizer
+@model ddPoliglotV6.Pages.ContactModel
+@{
+    ViewData["Title"] = localizer.Get("xxContact Us");
+    ViewData["Description"] = localizer.Get("pageDescriptionContactUs");
+    ViewData["ActiveMenu"] = MenuItemName.ContactUs.ToString();
+}
+
+<!-- page title -->
+    <section class="page-title-section overlay" data-background="/img/backgrounds/page-title.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">@localizer.Get("xxContact Us")</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+                    </ul>
+                    <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions.<br/> Just fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- /page title -->
+    <div class="container">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="FirstName"></label>
+                <input class="form-control" asp-for="FirstName">
+                <span asp-validation-for="FirstName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName"></label>
+                <input class="form-control" asp-for="LastName">
+                <span asp-validation-for="LastName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input class="form-control" asp-for="Email">
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message"></label>
+                <textarea class="form-control" asp-for="Message"></textarea>
+                <span asp-validation-for="Message"></span>
+            </div>
+            <button class="btn btn-primary">@localizer.Get("xxSubmit")</button>
+        </form>
+        <!-- gmap -->
+        <section class="section mt-100">
+            <!-- Google Map -->
+            <div id="map_canvas" data-latitude="48.1359244" data-longitude="16.9758347"></div>
+            @*<div id="map_canvas" data-latitude="46.460123" data-longitude="30.5717049"></div>*@
+
+        </section>
+<!-- /gmap -->
+
+
+    </div>
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

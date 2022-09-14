@@ -1,0 +1,20 @@
+<div class="row" style="min-height: 400px; margin: 5px;">
+    <div class="col-12" style="padding: 0px 5px">
+      <mat-checkbox class="form-control" [(ngModel)]="itemData.recomended">Add new + Rnd Mix *,+,-</mat-checkbox>
+      <mat-checkbox class="form-control" [(ngModel)]="isV2">update phrases for existing words</mat-checkbox>
+      <mat-checkbox class="form-control" [(ngModel)]="isV3">json with all words/phrases</mat-checkbox>
+      <div class="form-group rounded-lg border border-primary" style="width: 100%; background-color: rgb(235, 255, 248); padding: 5px;">
+        <textarea matInput
+            [(ngModel)]="itemData.str1"
+            style="height: 350px;"
+            class="form-control"
+        ></textarea>
+      </div>
+    </div>        
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="ok()">Ok</button>
+</mat-dialog-actions>
+

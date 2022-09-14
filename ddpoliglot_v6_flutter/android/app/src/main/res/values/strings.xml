@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ddpoliglot</string>
+    <string name="facebook_app_id">591988268771179</string> 
+    <string name="fb_login_protocol_scheme">fb591988268771179</string>
+</resources>

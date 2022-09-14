@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ddPoliglotV6.Data.Models;
+@using Microsoft.AspNetCore.Localization
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject CommonLocalizationService localizer
+
+@{
+    var requestCultureFeature = Context.Features.Get<IRequestCultureFeature>();
+    var requestCulture = requestCultureFeature.RequestCulture;
+    var havAccessToFabric = User.IsInRole(RolesConstants.SuperAdminRoleName)
+        || User.IsInRole(RolesConstants.AdminRoleName)
+        || User.IsInRole(RolesConstants.LessonsMakerRoleName)
+        ;
+}
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (havAccessToFabric)
+    {
+        <li class="list-inline-item">
+            <a class="text-uppercase text-color  p-sm-2 py-1 px-0 d-inline-block" href="/xx/lessons-fabric">Lessons Fabric</a>
+        </li>
+    }
+
+    <li class="list-inline-item">
+        <a class="text-uppercase text-color  p-sm-2 py-1 px-0 d-inline-block"
+           asp-route-culture="@requestCulture.Culture.Name"
+           asp-area="Identity"
+           asp-page="/Account/Manage/Index" title="Manage">
+            <img src="~/img/img_dd/user2.png" class="img-user" style="width:15px;" /> @User.Identity.Name!
+        </a>
+    </li>
+    <li class="list-inline-item">
+        <form class="form-inline"
+              asp-route-culture="@requestCulture.Culture.Name" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <button type="submit" class="nav-link btn btn-link text-color" style="padding:0px;">@localizer.Get("xxLog out")</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="list-inline-item">
+        <a class="text-uppercase text-color p-sm-2 py-1 px-0 d-inline-block"
+           asp-route-culture="@requestCulture.Culture.Name" asp-area="Identity" asp-page="/Account/Register">@localizer.Get("xxRegister")</a>
+    </li>
+    <li class="list-inline-item">
+        <a class="text-uppercase text-color p-sm-2 py-1 px-0 d-inline-block"
+           asp-route-culture="@requestCulture.Culture.Name" asp-area="Identity" asp-page="/Account/Login">@localizer.Get("xxLog in")</a>
+    </li>
+}
+

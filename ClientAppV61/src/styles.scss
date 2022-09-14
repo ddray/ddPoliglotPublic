@@ -1,0 +1,110 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '../node_modules/ngx-toastr/toastr.css';
+
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* .example-container {
+  display: flex;
+} */
+
+.my-tooltip {
+  white-space: pre-line !important;
+  font-size: small;
+}
+
+.past {
+  text-decoration: underline;
+  -webkit-text-decoration-color: green; /* Safari */  
+  text-decoration-color: green;
+}
+
+.feature {
+  text-decoration: underline;
+  -webkit-text-decoration-color: darkred; /* Safari */  
+  text-decoration-color: darkred;
+}
+
+.present {
+  text-decoration: underline;
+  -webkit-text-decoration-color: yellow; /* Safari */  
+  text-decoration-color: yellow;
+}
+
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+
+.bd-callout-warning {
+  border-left-color: #f0ad4e!important;
+}
+
+.bd-callout-color1 {
+  border-left-color: lightseagreen!important;
+}
+
+.bd-callout-color11 {
+  border-left-color: #fa9508!important;
+}
+
+.bd-callout-color12 {
+  border-left-color: #cbebf0!important;
+}
+
+.bd-callout-color13 {
+  border-left-color: #d9dddd!important;
+}
+.bd-callout-color2 {
+  border-left-color: limegreen!important;
+}
+
+.bd-callout-color3 {
+  border-left-color:lightskyblue!important;
+}
+
+.bd-callout-color31 {
+  border-left-color:rgb(65, 140, 190)!important;
+}
+
+.bd-callout-color4 {
+  border-left-color:rgb(236, 234, 93)!important;
+}
+
+.bd-callout-color5 {
+  border-left-color:rgb(226, 196, 224)!important;
+}
+
+.bd-callout-color51 {
+  border-left-color:rgb(198, 133, 204)!important;
+}
+
+.bd-callout {
+  padding-left: 1.25rem;
+  /* margin-top: 1.25rem; */
+  /* margin-bottom: 1.25rem; */
+  border: 1px solid #eee;
+  border-left-width: .25rem;
+  border-radius: .25rem;
+}

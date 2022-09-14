@@ -1,0 +1,92 @@
+<div>
+  <div class="example-loading-shade"
+       *ngIf="isLoading">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
+
+  <h1 mat-dialog-title>Check words translation</h1>
+
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="example-container1">
+        <div style="background-color:lightcyan">
+          {{data.source}}
+        </div>
+      </div>
+      <div class="example-container1">
+        <div style="background-color:lightgoldenrodyellow">
+          {{data.sourceTranslated}}
+        </div>
+      </div>
+    </div>
+
+    <div class="example-container1">
+      <h2>Original</h2>
+
+      <div class="example-list">
+        <div class="example-box1" *ngFor="let item of sources">
+          <input type="text" #inp [(ngModel)]="item.source" />
+          <input type="checkbox" [(ngModel)]="item.endPhrase" matTooltip="end of phrase" *ngIf="resultData.phrasesMixType === phrasesMixType.wave" />
+          <input type="checkbox" [(ngModel)]="item.pretext" matTooltip="is pretext, cannot be last" *ngIf="resultData.phrasesMixType === phrasesMixType.wave" />
+          <input type="checkbox" [(ngModel)]="item.baseWord" matTooltip="it's a simple word" *ngIf="resultData.phrasesMixType !== phrasesMixType.wave" />
+          <button type="button"
+                  mat-icon-button color="primary"
+                  matTooltip="split selected text"
+                  (click)="splitRow(item, inp, 0)">
+            <i class="material-icons">view_column</i>
+          </button>
+
+          <button type="button" mat-icon-button color="primary"
+                  matTooltip="merge with next"
+                  (click)="mergeWithNextRow(item, 0)">
+            <i class="material-icons">call_merge</i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Translation</h2>
+
+      <div cdkDropList
+           #doneList="cdkDropList"
+           [cdkDropListData]="translations"
+           class="example-list"
+           (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of translations" cdkDrag>
+          <input #inp1 type="text" [(ngModel)]="item.source" />
+          <button type="button" mat-icon-button color="primary"
+                  matTooltip="merge with next"
+                  (click)="mergeWithNextRow(item, 1)">
+            <mat-icon>call_merge</mat-icon>
+          </button>
+
+          <button type="button"
+                  mat-icon-button color="primary"
+                  matTooltip="split selected text"
+                  (click)="splitRow(item, inp1, 1)">
+            <i class="material-icons">view_column</i>
+          </button>
+
+          <button mat-icon-button color="warn" matTooltip="Delete row"
+                  type="button"
+                  (click)="deleteRow(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:20px;">
+    </div>
+
+    <app-mix-parameters [(resultData)]="resultData" *ngIf="resultData" [showGlobals]="false"></app-mix-parameters>
+
+  </div>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button [disabled]="!resultData.active && !resultData.trActive" (click)="ok()">Ok</button>
+  </mat-dialog-actions>
+
+</div>
+

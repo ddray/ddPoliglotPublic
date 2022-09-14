@@ -1,0 +1,21 @@
+﻿@page
+@model ddPoliglotV6.Pages.xIndex96_WordsAndPhrasesToJsonModel
+@{
+}
+
+<div style="margin-top:200px; margin-bottom:200px;">
+    <div>
+        <span style="white-space:pre">@Model.Result</span>
+    </div>
+    <ul>
+        @foreach (var item in Model.ResultStrs)
+        {
+            <li>
+                @item
+            </li>
+        }
+    </ul>
+</div>
+
+
+

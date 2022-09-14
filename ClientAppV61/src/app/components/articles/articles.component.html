@@ -1,0 +1,62 @@
+<mat-card>
+  <div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults || isRateLimitReached">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    
+    <button mat-button color="primary" (click)="generate()"
+      matTooltip="generate from articles">
+      <mat-icon>add_task</mat-icon>
+    </button>
+
+    <div class="example-table-container">
+      <table matSort  matSortActive="articleID" matSortDirection="desc" mat-table [dataSource]="data" class="example-table">
+        <ng-container matColumnDef="articleID">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>articleID</th>
+          <td mat-cell *matCellDef="let row">{{row.articleID}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name1</th>
+          <td mat-cell *matCellDef="let row">{{row.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="language">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Learn Lng</th>
+          <td mat-cell *matCellDef="let row">{{row.language}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="languageTranslation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nativ Lng</th>
+          <td mat-cell *matCellDef="let row">{{row.languageTranslation}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="act">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+          <td mat-cell *matCellDef="let row">
+            <a target="_blank" [routerLink]="['/article', row.articleID]">
+              edit
+            </a>
+            <button mat-button color="primary" [routerLink]="['/articleSpecialPlay', row.articleID]"
+                    matTooltip="article special play">
+              <mat-icon>duo</mat-icon>
+            </button>
+            <button mat-button color="primary" [routerLink]="['/article', row.articleID]"
+                    matTooltip="Edit">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="primary" (click)="delete(row.articleID)"
+                    matTooltip="Delete">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="[50, 100]" showFirstLastButtons [length]="resultsLength"></mat-paginator>
+  </div>
+</mat-card>

@@ -1,0 +1,44 @@
+﻿@using ddPoliglotV6.Infrastructure.Route
+@model CultureSwitcherModel
+
+<li class="list-inline-item">
+    <form id="culture-switcher">
+        <select name="culture" id="culture-options" class="custom-select mr-sm-1" style="height:28px; padding-bottom:0px; padding-top:0px;">
+            @foreach (var culture in Model.SupportedCultures)
+            {
+                <option value="@culture.Name"
+                        selected="@(Model.CurrentUICulture.Name == culture.Name ? true : false)"
+                        lessons-value-old='@(ViewData["lessons-folder-alias"] ?? "")'
+                        lessons-value-new="@RoutersTree.ReplacePathLessonsGetNew((ViewData["lessons-folder-alias"] ?? "").ToString(), Model.CurrentUICulture.Name, culture.Name)"
+                        >
+                    @culture.DisplayName
+                </option>
+            }
+        </select>
+    </form>
+</li>
+
+
+<script>
+    var segments = location.pathname.split('/');
+    var el = document.getElementById("culture-options");
+    el.addEventListener("change", () => {
+        var culture = el.options[el.selectedIndex].value;
+        var newLocation = "";
+        if (segments.length > 2 && segments[1].length === 2) {
+            segments[1] = culture;
+            newLocation = segments.join('/');
+        } else {
+            newLocation = '/' + culture + location.pathname;
+        }
+
+        var option = el.options[el.selectedIndex];
+        var lessonsValueOld = option.getAttribute("lessons-value-old");
+        var lessonsValueNew = option.getAttribute("lessons-value-new");
+        if (lessonsValueOld && lessonsValueOld !== lessonsValueNew) {
+            newLocation = newLocation.replace(lessonsValueOld, lessonsValueNew);
+        }
+
+        location.href = newLocation;
+    });
+</script>

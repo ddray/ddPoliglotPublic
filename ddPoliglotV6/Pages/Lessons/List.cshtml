@@ -1,0 +1,83 @@
+﻿@page "/{lessons-folder-alias:LessonsFolderAliases}"
+@using Microsoft.AspNetCore.Localization
+@using ddPoliglotV6.Infrastructure.Route
+
+@inject ddPoliglotV6.Infrastructure.Services.CommonLocalizationService localizer
+@inject IHtmlLocalizer<IndexModel> htmlLocalizer
+
+@model ddPoliglotV6.Pages.Lessons.ListModel
+
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    var requestCultureFeature = HttpContext.Features.Get<IRequestCultureFeature>();
+    var requestCulture = requestCultureFeature.RequestCulture;
+}
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="/img/backgrounds/page-title.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item">
+                        <a class="h2 text-primary font-secondary" href="#">@ViewData["Title"]</a>
+                    </li>
+                    <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+                </ul>
+                <p class="text-lighten">@ViewData["Description"]</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /page title -->
+
+<div class="container mt-3 mb-3">
+    <div class="col-12">
+        <div class="list-unstyled">
+            @foreach (var item in Model.Items)
+            {
+                <a asp-route-culture="@requestCulture.Culture.Name"
+                   asp-page="/Lessons/Item"
+                   asp-route-lessons-folder-alias='@ViewData["lessons-folder-alias"]'
+                   asp-route-lesson-page-alias='@item.PageName'>
+                    <div class="d-md-table mb-4 w-100 border-bottom hover-shadow">
+                        <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0 count-lesson"
+                             style="width: 100px;">
+                            <span class="h2 d-block">@item.Order</span>
+                            Урок
+                        </div>
+                        <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
+                            <span>@item.Name</span>
+                            <p class="mb-0">@item.Description </p>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+
+    @{
+        var prevDisabled = !Model.Items.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.Items.HasNextPage ? "disabled" : "";
+    }
+
+    <div class="row pagination-group" style="margin-bottom:300px;">
+        <div class="col-4">
+            <a asp-route-culture="@requestCulture.Culture.Name"
+               asp-route-lessons-folder-alias='@ViewData["lessons-folder-alias"]'
+               asp-page="/Lessons/List"
+               asp-route-pageIndex="@(Model.Items.PageIndex - 1)"
+               class="btn btn-primary @prevDisabled">
+                @localizer.Get("xxPrevious")
+            </a>
+            <a asp-route-culture="@requestCulture.Culture.Name"
+               asp-route-lessons-folder-alias='@ViewData["lessons-folder-alias"]'
+               asp-page="/Lessons/List"
+               asp-route-pageIndex="@(Model.Items.PageIndex + 1)"
+               class="btn btn-primary @nextDisabled">
+                @localizer.Get("xxNext")
+            </a>
+        </div>
+    </div>
+</div>
+

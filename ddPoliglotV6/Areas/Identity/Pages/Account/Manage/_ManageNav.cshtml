@@ -1,0 +1,18 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@using Microsoft.AspNetCore.Localization
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+    var requestCultureFeature = Context.Features.Get<IRequestCultureFeature>();
+    var requestCulture = requestCultureFeature.RequestCulture;
+}
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-route-culture="@requestCulture.Culture.Name" asp-area="Identity" asp-page="/account/manage/Index">Profile</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-route-culture="@requestCulture.Culture.Name" asp-area="Identity" asp-page="/account/manage/Email">Email</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-route-culture="@requestCulture.Culture.Name" asp-area="Identity" asp-page="/account/manage/ChangePassword">Password</a></li>
+    @if (hasExternalLogins)
+    {
+        <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-route-culture="@requestCulture.Culture.Name" asp-area="Identity" asp-page="/account/manage/ExternalLogins">External logins</a></li>
+    }
+    <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-route-culture="@requestCulture.Culture.Name" asp-area="Identity" asp-page="/account/manage/TwoFactorAuthentication">Two-factor authentication</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-route-culture="@requestCulture.Culture.Name" asp-area="Identity" asp-page="/account/manage/PersonalData">Personal data</a></li>
+</ul>

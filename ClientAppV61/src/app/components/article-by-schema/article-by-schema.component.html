@@ -1,0 +1,286 @@
+<div class="example-container">
+  <div class="example-loading-shade"
+       *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div style="width: 650px;">
+    <app-word-filtered-list
+      (selectRow)="addRowToList($event)"
+      [selectedItems]="articleByParamData.selectedWords"
+      [wordIDColumnVisibile]="false"
+      [translateWordButtonVisibile]="false"
+      [selectWordButtonVisibile]="true"
+      [managePhrasiesButtonVisibile]="false"
+      [editWordButtonVisibile]="false"
+      [deleteWordButtonVisibile]="false"
+      [addWordButtonVisibile]="false"
+    ></app-word-filtered-list>
+  </div>
+  <mat-card *ngIf="articleByParam" style="width: 800px; margin: 20px;">
+    <div>
+      <button *ngIf="!articleByParam.isShared || authorizeService.isAdmin()" type="button" mat-button color="primary" (click)="save()" matTooltip="Save template">
+        <mat-icon>save</mat-icon>
+        Save
+      </button>
+
+      <div (click)="changeTemplateModal()" style="float: right; width: 20px; height: 20px; background-color: rgb(255, 251, 246);">
+      </div>
+      <mat-checkbox *ngIf="articleByParam" style="float: right; margin: 5px;" [(ngModel)]="articleByParam.isTemplate">Template</mat-checkbox>
+      <mat-checkbox *ngIf="authorizeService.isAdmin()" style="float: right; margin: 5px;" [(ngModel)]="articleByParam.isShared">Shared</mat-checkbox>
+
+      <mat-divider></mat-divider>
+      <div class="bd-callout bd-callout-color1">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Prameters name" [(ngModel)]="articleByParam.name">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <form [formGroup]="formGr" (submit)="onSubmit()" id="documentEditForm" #documentEditForm="ngForm">
+      <div>
+        <div class="bd-callout bd-callout-color1">
+          <mat-form-field style="width: 100%">
+            <input matInput formControlName="baseName" placeholder="Base article name">
+              <mat-error *ngIf="formGr.controls['baseName'].hasError('required')">required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <table style="width: 100%">
+          <tr>
+            <td>
+              <div class="bd-callout bd-callout-color11">
+                <mat-form-field style="width: 100%">
+                  <mat-label>Dictor Phrases (Article Title)</mat-label>
+                  <textarea matInput
+                            formControlName="firstDictorPhrases"
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="40"
+                            style="overflow: hidden; "></textarea>
+                  <mat-error *ngIf="formGr.controls['firstDictorPhrases'].hasError('required')">required</mat-error>
+                </mat-form-field>
+              </div>
+
+             </td>
+            <td style="width:120px;">
+              <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('firstDictorPhrases', 'firstDictorPhrases')">
+                <mat-icon>playlist_add</mat-icon>
+              </button>
+              <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                      (click)="formGr.controls['firstDictorPhrases'].setValue('')">
+                <mat-icon>close</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <mat-divider></mat-divider>
+
+        <table style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
+          <tr *ngFor="let item of articleByParamData.selectedWords; let i = index">
+            <td>
+              <table style="width: 665px;">
+                <tr>
+                  <td colspan="2">
+                    <div class="form-group rounded-lg border border-primary" style="width: 100%; background-color: aliceblue; padding: 3px;">
+                      {{item.word.text}}
+                    </div>
+                  </td>
+                  <td style="width: 250px;">
+                    <div class="form-group rounded-lg border border-primary" style="width: 100%; padding: 5px; background-color: aliceblue">
+                      {{item.word.wordTranslation?.text}}
+                    </div>
+                  </td>
+                  <td style="width: 150px;">
+                    <div style="display: flex;">
+                      <button type="button" mat-button color="primary" (click)="editWordTranslation(item.word)" matTooltip="Edit word translation.">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button matTooltip="Delete row" type="button" color="primary" (click)="deleteRowFromList(item)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                      <button mat-icon-button matTooltip="Manage phrasies" type="button" color="primary" (click)="AddPhrase(item)">
+                        <mat-icon>speaker_notes</mat-icon>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngFor="let itemPhrase of item.phraseWordsSelected; let i = index">
+                  <td style="width: 15px;">
+                    &nbsp;
+                  </td>
+                  <td>
+                    <div class="form-group rounded-lg border border-primary" style="width: 100%; padding: 5px;"
+                         *ngIf="itemPhrase.text">
+                      {{itemPhrase.text}}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group rounded-lg border border-primary" style="width: 100%; padding: 5px;"
+                         *ngIf="itemPhrase.wordPhraseTranslation?.text">
+                      {{itemPhrase.wordPhraseTranslation?.text}}
+                    </div>
+                  </td>
+                  <td>
+                    <div style="display: flex;">
+                      <button type="button" mat-button color="primary" (click)="editWordPhraseTranslation(itemPhrase)" matTooltip="Edit phrase translation.">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-icon-button matTooltip="Delete row" type="button" color="primary" (click)="deletePhraseFromList(item, itemPhrase)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                      <div style="width: 40px;">
+                        &nbsp;
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button type="button" mat-icon-button color="primary"
+                      matTooltip="translate all phrases"
+                      (click)="translateAllSelectedPhrases()">
+                <mat-icon>g_translate</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <mat-divider></mat-divider>
+
+        <table style="width: 100%">
+          <tr>
+            <td>
+              <div class="bd-callout bd-callout-color11">
+
+                <mat-form-field style="width: 100%">
+                  <mat-label>Dictor Phrases (in the end but before "Finish repeat")</mat-label>
+                  <textarea matInput
+                            formControlName="beforeFinishDictorPhrases"
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="40"
+                            style="overflow: hidden; "></textarea>
+                  <mat-error *ngIf="formGr.controls['beforeFinishDictorPhrases'].hasError('required')">required</mat-error>
+                </mat-form-field>
+              </div>
+          </td>
+            <td style="width:120px;">
+              <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('beforeFinishDictorPhrases', 'beforeFinishDictorPhrases')">
+                <mat-icon>playlist_add</mat-icon>
+              </button>
+              <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                      (click)="formGr.controls['beforeFinishDictorPhrases'].setValue('')">
+                <mat-icon>close</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </table>
+
+
+        <table style="width: 100%">
+          <tr>
+            <td>
+              <div class="bd-callout bd-callout-color11">
+                <mat-form-field style="width: 100%">
+                  <mat-label>Dictor Phrases in Finish</mat-label>
+                  <textarea matInput
+                            formControlName="finishDictorPhrases"
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="40"
+                            style="overflow: hidden; "></textarea>
+                  <mat-error *ngIf="formGr.controls['finishDictorPhrases'].hasError('required')">required</mat-error>
+                </mat-form-field>
+              </div>
+            </td>
+            <td style="width:120px;">
+              <button mat-icon-button matTooltip="Add from templates" type="button" color="primary" (click)="getDictorTextFromTemplate('finishDictorPhrases', 'finishDictorPhrases')">
+                <mat-icon>playlist_add</mat-icon>
+              </button>
+              <button mat-icon-button matTooltip="clear text" type="button" color="primary"
+                      (click)="formGr.controls['finishDictorPhrases'].setValue('')">
+                <mat-icon>close</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <div style="margin: 20px;"> </div>
+        <mat-divider></mat-divider>
+
+      </div>
+    </form>
+
+    <mat-card style="width: 100%;">
+      <mat-card-header>
+        <mat-card-subtitle>
+          Parameters for article specific: 
+          <button mat-icon-button matTooltip="Add new article" type="button" color="primary" (click)="addMixParam(1)">
+            <mat-icon>add_circle</mat-icon>
+          </button>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let mixParam of articleByParamData.mixParamsList; let i = index">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ cutText(mixParam.firstDictorPhrases) || mixParam.name}}
+            </mat-panel-title>
+            <mat-panel-description style="text-align: right;">
+              <button style="text-align: right;" mat-icon-button matTooltip="Delete article from list" type="button" color="primary" (click)="deleteMixParamFromList(mixParam)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-mix-parameters [(resultData)]="articleByParamData.mixParamsList[i]" [showGlobals]="true"></app-mix-parameters>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card>
+
+    <mat-divider></mat-divider>
+
+    <mat-card style="width: 100%;">
+      <mat-card-header>
+        <mat-card-subtitle>
+          For repetition
+          <button mat-icon-button matTooltip="set words for repetition" type="button" color="primary" (click)="addRepeatWord()">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <ol>
+        <li *ngFor="let word of articleByParamData.wordsToRepeat">
+          {{word.text}}
+        </li>
+      </ol>
+
+      <ol>
+        <li *ngFor="let phrase of articleByParamData.wordPhrasesToRepeat">
+          {{phrase.text}}
+        </li>
+      </ol>
+    </mat-card>
+
+    <mat-divider></mat-divider>
+    
+    <button *ngIf="articleByParam && (!articleByParam.isShared || authorizeService.isAdmin())"
+     form="documentEditForm"
+            style="margin: 20px;"
+            mat-raised-button
+            matTooltip="Create new articles for every param"
+            color="primary">
+      Create Article(s)
+    </button>
+  </mat-card>
+</div>
+

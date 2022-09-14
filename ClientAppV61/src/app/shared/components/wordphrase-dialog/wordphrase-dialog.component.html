@@ -1,0 +1,69 @@
+<div class="example-container">
+  <div class="example-loading-shade"
+       *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <form [formGroup]="formGr" (submit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Order</mat-label>
+      <input matInput
+        type="number"
+        formControlName="phraseOrderInCurrentWord"
+        style="overflow: hidden; " />
+      <mat-error *ngIf="formGr.controls['phraseOrderInCurrentWord'].errors">error</mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 500px;">
+      <mat-label>Phrase</mat-label>
+      <textarea matInput
+                formControlName="phraseText"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"
+                style="overflow: hidden; "></textarea>
+      <mat-error *ngIf="formGr.controls['phraseText'].hasError('required')">required</mat-error>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <mat-form-field style="width: 500px;">
+      <mat-label>Translation</mat-label>
+      <textarea matInput
+                formControlName="phraseTranslationText"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"
+                style="overflow: hidden; width: 500px;"></textarea>
+    </mat-form-field>
+
+    <mat-dialog-actions *ngIf="formGr.controls['phraseText'].value && !formGr.controls['phraseTranslationText'].value">
+      <mat-spinner *ngIf="isTranslateLoader"></mat-spinner>
+      <button type="button" mat-icon-button color="primary" [disabled]="isTranslateLoader"
+              matTooltip="translate phrase"
+              (click)="translatePhrases()">
+        <mat-icon>g_translate</mat-icon>
+      </button>
+    </mat-dialog-actions>
+
+    <mat-dialog-actions align="end">
+      <button mat-button type="button" (click)="cancel()">Cancel</button>
+      <button mat-button type="submit">Ok</button>
+    </mat-dialog-actions>
+  </form>
+
+  <div class="row" style="margin-top: 20px;">
+    <audio *ngIf="dataItem.textSpeechFileName" style="height:32px; width: 250px;" src="{{phrasesAudioUrl}}/{{dataItem.textSpeechFileName}}" controls="controls">
+    </audio>
+    <audio *ngIf="dataItem.textSpeechFileNameSpeed1" style="height:32px; width: 250px;" src="{{phrasesAudioUrl}}/{{dataItem.textSpeechFileNameSpeed1}}" controls="controls">
+    </audio>
+    <audio *ngIf="dataItem.textSpeechFileNameSpeed2" style="height:32px; width: 250px;" src="{{phrasesAudioUrl}}/{{dataItem.textSpeechFileNameSpeed2}}" controls="controls">
+    </audio>
+  </div>
+  <div class="row" style="margin-top: 10px;">
+    <audio *ngIf="dataItem.wordPhraseTranslation?.textSpeechFileName" style="height:32px; width: 250px;" src="{{phrasesAudioUrl}}/{{dataItem.wordPhraseTranslation?.textSpeechFileName}}" controls="controls">
+    </audio>
+  </div>
+</div>

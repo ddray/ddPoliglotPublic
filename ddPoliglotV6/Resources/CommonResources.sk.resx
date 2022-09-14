@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="pageDescriptionContactUs" xml:space="preserve">
+    <value>How yor can contact us</value>
+  </data>
+  <data name="pageDescriptionHomePage" xml:space="preserve">
+    <value>Bezplatné video a audio lekcie cudzích jazykov</value>
+  </data>
+  <data name="pageDescriptionLessonsEn" xml:space="preserve">
+    <value>Bezplatné lekcie angličtiny, zoznam lekcií. Video a audio lekcie angličtiny.</value>
+  </data>
+  <data name="pageDescriptionLessonsSk" xml:space="preserve">
+    <value>Bezplatné lekcie slovenčiny, zoznam lekcií. Video a audio lekcie slovenského jazyka.</value>
+  </data>
+  <data name="pageTitleHomePage" xml:space="preserve">
+    <value>ddPoliglot -Bezplatné hodiny cudzieho jazyka</value>
+  </data>
+  <data name="pageTitleLessonsEn" xml:space="preserve">
+    <value>Zoznam bezplatných video a audio lekcií angličtiny.</value>
+  </data>
+  <data name="pageTitleLessonsSk" xml:space="preserve">
+    <value>Zoznam bezplatných video a audio lekcií slovenčiny.</value>
+  </data>
+  <data name="xxAccess denied" xml:space="preserve">
+    <value>Prístup zamietnutý</value>
+  </data>
+  <data name="xxaccount" xml:space="preserve">
+    <value>účet</value>
+  </data>
+  <data name="xxAssociate your account" xml:space="preserve">
+    <value>Priraďte svoj účet</value>
+  </data>
+  <data name="xxclick here to log in" xml:space="preserve">
+    <value>kliknite tu pre prihlásenie</value>
+  </data>
+  <data name="xxClick here to Logout" xml:space="preserve">
+    <value>Kliknutím sa odhlásite</value>
+  </data>
+  <data name="xxConfirm email" xml:space="preserve">
+    <value>Potvrď email</value>
+  </data>
+  <data name="xxConfirm email change" xml:space="preserve">
+    <value>Potvrďte zmenu e-mailu</value>
+  </data>
+  <data name="xxContact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="xxContact Us" xml:space="preserve">
+    <value>Kontaktuj nás</value>
+  </data>
+  <data name="xxCreate a new account." xml:space="preserve">
+    <value>Vytvorte nový účet.</value>
+  </data>
+  <data name="xxDon't have access to your authenticator device? You can" xml:space="preserve">
+    <value>Nemáte prístup k svojmu autentifikačnému zariadeniu? Môžeš</value>
+  </data>
+  <data name="xxEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="xxEmail Required" xml:space="preserve">
+    <value>Vyžaduje sa e-mail</value>
+  </data>
+  <data name="xxEnglish lessons" xml:space="preserve">
+    <value>Lekcie angličtiny</value>
+  </data>
+  <data name="xxEnter your email." xml:space="preserve">
+    <value>Zadajte svoj e-mail.</value>
+  </data>
+  <data name="xxFirst Name" xml:space="preserve">
+    <value>Krstné meno</value>
+  </data>
+  <data name="xxFirst Name Required" xml:space="preserve">
+    <value>Krstné meno je povinné</value>
+  </data>
+  <data name="xxForgot password confirmation" xml:space="preserve">
+    <value>Zabudli ste potvrdenie hesla</value>
+  </data>
+  <data name="xxForgot your password?" xml:space="preserve">
+    <value>zabudol si heslo?</value>
+  </data>
+  <data name="xxFree English lesson" xml:space="preserve">
+    <value>Lekcia angličtiny zadarmo</value>
+  </data>
+  <data name="xxFree Slovakian lesson" xml:space="preserve">
+    <value>Hodina slovenčiny zadarmo</value>
+  </data>
+  <data name="xxHome" xml:space="preserve">
+    <value>Domov</value>
+  </data>
+  <data name="xxLast Name" xml:space="preserve">
+    <value>Priezvisko</value>
+  </data>
+  <data name="xxLast Name Required" xml:space="preserve">
+    <value>Vyžaduje sa priezvisko</value>
+  </data>
+  <data name="xxLessons" xml:space="preserve">
+    <value>Poučenie</value>
+  </data>
+  <data name="xxLocalisation" xml:space="preserve">
+    <value>Localisation</value>
+  </data>
+  <data name="xxLocked out" xml:space="preserve">
+    <value>Uzamknutý</value>
+  </data>
+  <data name="xxLog in" xml:space="preserve">
+    <value>Prihlásiť sa</value>
+  </data>
+  <data name="xxLog in using your" xml:space="preserve">
+    <value>Prihláste sa pomocou svojho</value>
+  </data>
+  <data name="xxlog in with a recovery code" xml:space="preserve">
+    <value>prihláste sa pomocou obnovovacieho kódu</value>
+  </data>
+  <data name="xxLog out" xml:space="preserve">
+    <value>Odhlásiť sa</value>
+  </data>
+  <data name="xxMessage" xml:space="preserve">
+    <value>Správa</value>
+  </data>
+  <data name="xxMessage Required" xml:space="preserve">
+    <value>Vyžaduje sa správa</value>
+  </data>
+  <data name="xxNext" xml:space="preserve">
+    <value>Nasledujúci</value>
+  </data>
+  <data name="xxPassword" xml:space="preserve">
+    <value>Heslo</value>
+  </data>
+  <data name="xxPlease check your email to confirm your account." xml:space="preserve">
+    <value>Skontrolujte svoj e-mail a potvrďte svoj účet.</value>
+  </data>
+  <data name="xxPlease check your email to reset your password." xml:space="preserve">
+    <value>Skontrolujte svoje e-mailové adresy a obnovte svoje heslo.</value>
+  </data>
+  <data name="xxPlease enter an email address for this site below and click the Register button to finish logging in." xml:space="preserve">
+    <value>Nižšie zadajte e-mailovú adresu pre tento web a dokončite prihlasovanie kliknutím na tlačidlo Registrovať.</value>
+  </data>
+  <data name="xxPrevious" xml:space="preserve">
+    <value>Predchádzajúce</value>
+  </data>
+  <data name="xxPrivacy" xml:space="preserve">
+    <value>Ochrana osobných údajov</value>
+  </data>
+  <data name="xxRecovery code verification" xml:space="preserve">
+    <value>Overenie obnovovacieho kódu</value>
+  </data>
+  <data name="xxRegister" xml:space="preserve">
+    <value>Registrovať</value>
+  </data>
+  <data name="xxRegister as a new user" xml:space="preserve">
+    <value>Zaregistrujte sa ako nový používateľ</value>
+  </data>
+  <data name="xxRegister confirmation" xml:space="preserve">
+    <value>Potvrdenie registrácie</value>
+  </data>
+  <data name="xxRemember me?" xml:space="preserve">
+    <value>Pamätáš si ma?</value>
+  </data>
+  <data name="xxResend" xml:space="preserve">
+    <value>Znovu odoslať</value>
+  </data>
+  <data name="xxResend email confirmation" xml:space="preserve">
+    <value>Znova odoslať e-mailové potvrdenie</value>
+  </data>
+  <data name="xxReset" xml:space="preserve">
+    <value>Resetovať</value>
+  </data>
+  <data name="xxReset password" xml:space="preserve">
+    <value>Obnoviť heslo</value>
+  </data>
+  <data name="xxReset password confirmation" xml:space="preserve">
+    <value>Obnovte potvrdenie hesla</value>
+  </data>
+  <data name="xxReset your password." xml:space="preserve">
+    <value>Obnoviť heslo.</value>
+  </data>
+  <data name="xxSlovak Lessons" xml:space="preserve">
+    <value>Hodiny slovenčiny</value>
+  </data>
+  <data name="xxSubmit" xml:space="preserve">
+    <value>Predložiť</value>
+  </data>
+  <data name="xxThis account has been locked out, please try again later." xml:space="preserve">
+    <value>Tento účet bol uzamknutý, skúste to znova neskôr.</value>
+  </data>
+  <data name="xxTwo-factor authentication" xml:space="preserve">
+    <value>Two-factor authentication</value>
+  </data>
+  <data name="xxUse a local account to log in" xml:space="preserve">
+    <value>Na prihlásenie použite miestny účet</value>
+  </data>
+  <data name="xxUse another service to log in." xml:space="preserve">
+    <value>Na prihlásenie použite inú službu.</value>
+  </data>
+  <data name="xxUse another service to register." xml:space="preserve">
+    <value>Na registráciu použite inú službu.</value>
+  </data>
+  <data name="xxYou do not have access to this resource." xml:space="preserve">
+    <value>K tomuto prostriedku nemáte prístup.</value>
+  </data>
+  <data name="xxYou have requested to log in with a recovery code. This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again." xml:space="preserve">
+    <value>Požiadali ste o prihlásenie pomocou obnovovacieho kódu. Toto prihlásenie si zapamätáte, až keď pri prihlásení zadáte kód aplikácie autentifikátora alebo zakážete 2FA a znova sa prihlásite.</value>
+  </data>
+  <data name="xxYou have successfully logged out of the application." xml:space="preserve">
+    <value>Úspešne ste sa odhlásili z aplikácie.</value>
+  </data>
+  <data name="xxYou've successfully authenticated with" xml:space="preserve">
+    <value>Úspešne ste sa autentifikovali u</value>
+  </data>
+  <data name="xxYour login is protected with an authenticator app. Enter your authenticator code below." xml:space="preserve">
+    <value>Your login is protected with an authenticator app. Enter your authenticator code below.</value>
+  </data>
+  <data name="xxYour password has been reset. Please" xml:space="preserve">
+    <value>Vaše heslo bolo obnovené. Prosím</value>
+  </data>
+</root>

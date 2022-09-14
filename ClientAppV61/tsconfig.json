@@ -1,0 +1,34 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "paths": {
+      "timers": ["./node_modules/timers-browserify"],
+      "crypto": ["./node_modules/crypto-browserify"],
+      "os": ["./node_modules/os-browserify/browser"],
+      "path": ["./node_modules/path-browserify"],
+      "https": ["./node_modules/https-browserify"],
+      "http": ["./node_modules/stream-http"],
+      "vm": ["./node_modules/vm-browserify"],
+      "stream": ["./node_modules/stream-browserify"],
+      "assert": ["./node_modules/assert/"],
+    },
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}
